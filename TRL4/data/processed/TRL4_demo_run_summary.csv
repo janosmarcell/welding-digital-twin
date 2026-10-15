@@ -1,0 +1,8 @@
+﻿step,module,input,output,status
+1,Adatbeolvasás,150 db CSV + 20 db 2D + 18 db 3D,egységes manifestek,lefuttatva
+2,Szegmentálás,nyers CSV,449 aktív szegmens,lefuttatva
+3,Feature-képzés,szegmentált CSV-k,segment_features.csv,lefuttatva
+4,Mintaszintű összegzés,szegmens feature-k,sample_features_by_segments.csv,lefuttatva
+5,Csoportelemzés,mintaszintű és szegmensszintű feature-k,"group_summary.csv, segment_position_summary.csv",lefuttatva
+6,Anomáliakezelés,segment_features.csv,anomaly_report.csv,lefuttatva
+7,Multimodális lefedettség,manifestek,hybrid_coverage_summary.csv,lefuttatva

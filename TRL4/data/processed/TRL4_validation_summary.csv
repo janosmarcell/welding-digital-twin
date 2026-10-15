@@ -1,0 +1,10 @@
+﻿criterion,evidence,status
+Egységes adatstruktúra,sample_manifest.csv és segment_manifest.csv,teljesült
+Automatikus szegmentálás,449 aktív szegmens,teljesült
+Feature-képzés,segment_features.csv és sample_features_by_segments.csv,teljesült
+Csoportszintű elemzés,group_summary.csv és segment_position_summary.csv,teljesült
+Anomáliakezelés,anomaly_report.csv,teljesült
+Részleges 2D integráció,20 közvetlen 2D kapcsolás,részlegesen teljesült
+Részleges 3D integráció,18 sample-szintű 3D kapcsolat,részlegesen teljesült
+Laboratóriumi demonstrációs futás,reprodukálható pipeline és riportkimenetek,megerősítendő
+Validációs jegyzőkönyv,külön TRL4 dokumentum,elkészítve

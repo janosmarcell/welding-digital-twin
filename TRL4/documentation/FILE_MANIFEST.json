@@ -1,0 +1,109 @@
+{
+  "source_archives": [
+    "TRL4_laborvalidacio_vscode.zip",
+    "adat_csomag_trl4.zip"
+  ],
+  "file_count": 20,
+  "files": [
+    {
+      "path": "TRL4/.gitignore",
+      "size": 101,
+      "sha256": "8ffb17a92b20b60576ab318a95776cd6f67298adfbec31f61cec0130ba8284e0"
+    },
+    {
+      "path": "TRL4/RUN_TRL4.md",
+      "size": 1180,
+      "sha256": "4844d47950355ab49efc79632da63e284b2b605ce7ee5cc7d007b425adbdd73c"
+    },
+    {
+      "path": "TRL4/data/processed/TRL4_CSV_leirasok.txt",
+      "size": 2181,
+      "sha256": "239ccdb83b940535ce0929b1016071203e612881e30c343eb8399eb0d84e35eb"
+    },
+    {
+      "path": "TRL4/data/processed/TRL4_demo_run_summary.csv",
+      "size": 606,
+      "sha256": "d42966b7e32177162c4af87fa87bea1db101a38962e93ab4ddabf5f0b0e95702"
+    },
+    {
+      "path": "TRL4/data/processed/TRL4_reproduction_checklist.csv",
+      "size": 688,
+      "sha256": "9d4c56a2eb715f44323a8453c2ed2d22836faaed5579403c7f761ecba09f468e"
+    },
+    {
+      "path": "TRL4/data/processed/TRL4_validation_summary.csv",
+      "size": 713,
+      "sha256": "7c8aacd6aebbc005c2842e32670f67e3b38f4c977f2c7c6c0d069b5595c941ec"
+    },
+    {
+      "path": "TRL4/data/processed/anomaly_report.csv",
+      "size": 188,
+      "sha256": "1757b2c87d12ba171e4637dc2a9a458f49db4f483e4496d17fbb018458b6dc78"
+    },
+    {
+      "path": "TRL4/data/processed/csv_trl4_összes.xlsx",
+      "size": 397693,
+      "sha256": "6165923913e897b624909fa26b4b0171b09fbcbd79edabd254a9114d6ed6b44e"
+    },
+    {
+      "path": "TRL4/data/processed/group_summary.csv",
+      "size": 1386,
+      "sha256": "280b8c603a5c5fdf74e2d6ee49a7a11403c327901a9c8e93109ce8909c03038e"
+    },
+    {
+      "path": "TRL4/data/processed/hybrid_coverage_summary.csv",
+      "size": 165,
+      "sha256": "369bc8b5a28c07ce198a61ad45645ba57990f85cbc200531de895afa89f4c02f"
+    },
+    {
+      "path": "TRL4/data/processed/sample_features_by_segments.csv",
+      "size": 56657,
+      "sha256": "4e10754b1f4c2889e1eb186c0bd132b9f29453e2e3e0c0cb3b89de0bc651a0ea"
+    },
+    {
+      "path": "TRL4/data/processed/sample_manifest.csv",
+      "size": 12031,
+      "sha256": "32028e6181ed17816b41674b30233b71b44966552c108242cfda7a25f11b4182"
+    },
+    {
+      "path": "TRL4/data/processed/segment_features.csv",
+      "size": 289942,
+      "sha256": "b251805797ea3aa7b1585472aa10bb41cdb86f178302afb382ced31470e6e645"
+    },
+    {
+      "path": "TRL4/data/processed/segment_manifest.csv",
+      "size": 63728,
+      "sha256": "b1780b8380366f2f7c256fb26888d7fde6720531f1fdb6dab572b96148bc8eb4"
+    },
+    {
+      "path": "TRL4/data/processed/segment_position_summary.csv",
+      "size": 1574,
+      "sha256": "301cf929a4393709011d748e1f5e7ffa4db7e69225db971e2daf4d1062c6887e"
+    },
+    {
+      "path": "TRL4/documentation/IMPORT_NOTES.md",
+      "size": 1108,
+      "sha256": "a3df059fc809bd72f21f634599d443f212b32eaaf27ee4bdffa4a230a4d2ea5d"
+    },
+    {
+      "path": "TRL4/documentation/legacy/trl4_lab_validation_report.md",
+      "size": 328,
+      "sha256": "32d7f451702ffcdf3400e8cd9fad48e812666cf70e597be81eefbcba8d5db24c"
+    },
+    {
+      "path": "TRL4/src/lab_validation/common_io.py",
+      "size": 2899,
+      "sha256": "81042ee3671211cb69437ed8b07fb09bdfedaa190461d8e4150b41fc1190bc1d"
+    },
+    {
+      "path": "TRL4/src/lab_validation/trl4_lab_validation_matrix.py",
+      "size": 1959,
+      "sha256": "90d5f859d67039ffe4bdbecbe419148a9a5dc7c50351d4a7b36b76384f029d28"
+    },
+    {
+      "path": "TRL4/validation/results/legacy/trl4_lab_validation_matrix.json",
+      "size": 22300,
+      "sha256": "09d5889077651b365f969ca559bdc31ff06af8a297d61c5109905fdc1dc8261c"
+    }
+  ]
+}

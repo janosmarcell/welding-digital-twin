@@ -1,0 +1,2 @@
+﻿sample_id,group_id,speed_cm_per_min,detected_segments,expected_segments,raw_csv_path,note
+g02_s33,g02,40,2,3,csv_light/g02_40/g02_s33.csv,TorchSignal active runs differ from expected 3

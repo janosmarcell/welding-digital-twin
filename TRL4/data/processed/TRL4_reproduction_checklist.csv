@@ -1,0 +1,9 @@
+﻿order_no,item,detail
+1,Projektkörnyezet előkészítése,Python + requirements telepítése
+2,Adatok elhelyezése,"CSV, 2D és 3D állományok a dokumentált mappastruktúrába"
+3,Manifestek előállítása,sample_manifest.csv és segment_manifest.csv újragenerálása
+4,Szegmentálás futtatása,aktív hegesztési szakaszok kivágása
+5,Feature-képzés futtatása,segment_features.csv és sample_features_by_segments.csv létrehozása
+6,Elemzések futtatása,"group_summary.csv, segment_position_summary.csv, anomaly_report.csv"
+7,Multimodális ellenőrzés,2D és 3D kapcsolatok ellenőrzése
+8,Laboratóriumi demo riport,összefoglaló kimenetek és validációs dokumentáció

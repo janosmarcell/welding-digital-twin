@@ -1,0 +1,34 @@
+TRL4 CSV állományok rövid magyarázata
+
+1. sample_manifest.csv
+Mintaszintű nyilvántartó tábla. Megmutatja, hogy egy adott minta melyik csoporthoz tartozik, van-e hozzá 2D vagy 3D állomány, illetve hány aktív szegmens detektálható benne.
+
+2. segment_manifest.csv
+Szegmensszintű nyilvántartó tábla. Az aktív hegesztési szakaszokat sorolja fel, megadva azok kezdetét, végét, hosszát és azt, hogy kapcsolódik-e hozzájuk 2D kép.
+
+3. sample_features_by_segments.csv
+Mintaszintű összegző tábla. Az egyes mintákhoz aggregált jellemzőket rendel, például teljes aktív időtartamot, átlagos szegmensjellemzőket és w01/w02/w03 bontású értékeket.
+
+4. segment_features.csv
+A legfontosabb szegmensszintű feature-tábla. Numerikus jellemzőket tartalmaz minden aktív hegesztési szakaszra, például időtartam, pályahossz, feszültség, áramerősség és huzalelőtolás.
+
+5. group_summary.csv
+Csoportszintű összegző állomány. A technológiai csoportok közötti különbségeket mutatja meg átlagok és szórások formájában.
+
+6. segment_position_summary.csv
+A varrat- és szegmenspozíció szerinti összesített állomány. Azt mutatja meg, hogyan viselkedik az első, második és harmadik aktív szakasz az egyes csoportokban.
+
+7. anomaly_report.csv
+Anomáliajelentés. A hiányos, atipikus vagy kiugró mintákat és szegmenseket rögzíti, illetve röviden jelzi az eltérés okát.
+
+8. hybrid_coverage_summary.csv
+A multimodális lefedettség összefoglalása. Megmutatja, hány mintához van 2D, hányhoz 3D adat, és összesen mennyi közvetlen multimodális kapcsolat érhető el.
+
+9. TRL4_validation_summary.csv
+A TRL 4 megerősítéséhez szükséges bizonyítási elemek státusztáblája. Röviden összefoglalja, mely laboratóriumi követelmények teljesültek és melyek igényelnek további demonstrációt.
+
+10. TRL4_demo_run_summary.csv
+A demonstrációs futás összefoglaló táblája. Lépésről lépésre megmutatja a laboratóriumi pipeline fő állomásait és azok kimeneteit.
+
+11. TRL4_reproduction_checklist.csv
+Reprodukciós ellenőrzőlista. A laboratóriumi újrafuttathatóság fő lépéseit rögzíti.
