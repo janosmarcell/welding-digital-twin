@@ -1,14 +1,5 @@
-TRL4/
-├── README.md
-├── data/
-│   ├── csv/
-│   ├── images_2d/
-│   └── pointclouds_3d/
-├── src/
-│   ├── csv_processing/
-│   ├── image_processing/
-│   └── pointcloud_processing/
-├── validation/
-│   ├── test_protocols/
-│   └── results/
-└── documentation/
+# CSV Processing
+
+Python scripts for processing robotic welding time-series data.
+
+This module will contain CSV import, preprocessing, segmentation, statistical analysis and anomaly detection algorithms.
