@@ -1,0 +1,5 @@
+﻿evidence_id,publication_year,source_description,doi,supported_scope,verification_note
+P02,2023,Sensors — 3D Scanner-Based Identification of Welding Defects—Clustering the Results of Point Cloud Alignment,10.3390/s23052503,"Published geometric PoC, no code reproduction verified",Published article; PDF not included
+P03,2024,Scientific Reports — Real-time data visualization of welding robot data and preparation for future of digital twin system,10.1038/s41598-024-59146-9,"Published robot-data acquisition PoC, no end-to-end claim",Published article; PDF not included
+P05,2026,GÉP 2026/1/1 — point-cloud threshold sensitivity study,10.70750/GEP.2026.1.1,"Later methodological context, not historical TRL3 proof",Later publication; PDF not included
+P06,2026,GÉP 2026/1/2 — point-cloud feature methods,10.70750/GEP.2026.1.2,"Later methodological context, not historical TRL3 proof",Later publication; PDF not included

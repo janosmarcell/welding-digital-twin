@@ -1,0 +1,4 @@
+﻿evidence_id,publication_year,source_description,doi,supported_scope,verification_note
+P01,2021,HJIC — geometric inspection,10.33927/hjic-2021-13,Architecture foundation; retrospective,Published article; PDF not included
+P02,2023,Sensors — 3D Scanner-Based Identification of Welding Defects—Clustering the Results of Point Cloud Alignment,10.3390/s23052503,Supporting geometric processing stream; later than initial concept,Published article; PDF not included
+P03,2024,Scientific Reports — Real-time data visualization of welding robot data and preparation for future of digital twin system,10.1038/s41598-024-59146-9,Supporting cell data stream; not integrated architecture verification,Published article; PDF not included
