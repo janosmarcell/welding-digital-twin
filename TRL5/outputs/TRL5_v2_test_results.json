@@ -1,0 +1,158 @@
+{
+  "TRL5_FINAL_STATUS": "NOT_COMPLETED",
+  "real_dataset": {
+    "run_utc": "2026-10-15T11:39:51.087886+00:00",
+    "source_file": "csv_light2.zip",
+    "sha256": "bfd05bc7bb5e82f74bba5a7ecac556790a993a53add47f30a7bab77648e298bf",
+    "csv_count": 150,
+    "jpg_count": 20,
+    "ply_count": 18,
+    "by_group": {
+      "g01_30": {
+        "has_jpg": 6,
+        "has_ply": 6
+      },
+      "g02_40": {
+        "has_jpg": 3,
+        "has_ply": 1
+      },
+      "g03_50": {
+        "has_jpg": 5,
+        "has_ply": 5
+      },
+      "g04_60": {
+        "has_jpg": 3,
+        "has_ply": 3
+      },
+      "g05_70": {
+        "has_jpg": 3,
+        "has_ply": 3
+      }
+    },
+    "three_modality_pairs": 17,
+    "structural_ok_csv": 149,
+    "csv_needing_review": [
+      "g02_s33"
+    ],
+    "csv_with_timestamp_duplicates": 150,
+    "all_timestamps_nondecreasing": true,
+    "csvs_with_images": 20,
+    "csvs_with_ply": 18,
+    "unmatched_images": [],
+    "unmatched_ply": [],
+    "ply_parse_success": 18,
+    "image_decode_success": 20,
+    "real_anchored_synthetic": {
+      "missing_span": {
+        "source_csv": "csv_light2/g01_30/g01_s01.csv",
+        "before": 3,
+        "after": 2
+      },
+      "spike_test": {
+        "tp": 36,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou": 1.0,
+        "original_false_positive_rows": 0,
+        "evaluation": "single-source real-anchored baseline; injected outliers only, NOT independent real anomalies",
+        "thresholds_from_single_reference_csv": {
+          "Voltage": 25.71,
+          "Current": 64.4,
+          "WireFeedSpeed": 1.64
+        },
+        "injection_row_start": 894,
+        "injection_row_end_exclusive": 930
+      },
+      "image": {
+        "source_image": "csv_light2/g01_30/g01_s01.jpg",
+        "before": {
+          "sharpness_laplacian": 1334.248,
+          "dark_fraction": 0.0,
+          "range_p98_p2": 157.0,
+          "is_evaluable": true
+        },
+        "after": {
+          "sharpness_laplacian": 60.616,
+          "dark_fraction": 0.111,
+          "range_p98_p2": 155.0,
+          "is_evaluable": true
+        },
+        "degradation_detected_by_sharpness": true,
+        "known_synthetic_occlusion_detected": true,
+        "synthetic_v1_qc_is_evaluable_warning": true,
+        "qc_decision_requires_human_review": true
+      },
+      "geometry": {
+        "source_ply": "csv_light2/g01_30/g01_s01.ply",
+        "vertices_sampled": 10000,
+        "injected_points": 200,
+        "z_displacement": 5.091026935423264,
+        "best_percentile_exploratory": 98,
+        "best_iou_exploratory": 1.0,
+        "at97": {
+          "percentile": 97,
+          "tp": 200,
+          "fp": 100,
+          "fn": 0,
+          "precision": 0.6667,
+          "recall": 1.0,
+          "iou": 0.6667
+        },
+        "limitations": "known coordinate frame and synthetic shifted points; FGR/ICP NOT tested, surface ground truth absent"
+      }
+    }
+  },
+  "tests": [
+    {
+      "code": "T5-01",
+      "name": "TorchSignal szegmentálás",
+      "synthetic_v1_result": "PASS_SYNTHETIC",
+      "real_data_status": "REAL_STRUCTURAL_CHECK_DONE_ANNOTATIONS_PENDING"
+    },
+    {
+      "code": "T5-02",
+      "name": "Jelkiugrás felismerése",
+      "synthetic_v1_result": "PASS_SYNTHETIC",
+      "real_data_status": "REAL_ANCHORED_SYNTHETIC_INJECTION_DONE_REAL_LABELS_PENDING"
+    },
+    {
+      "code": "T5-03",
+      "name": "2D képminőség",
+      "synthetic_v1_result": "PASS_SYNTHETIC",
+      "real_data_status": "REAL_IMAGE_QC_EXPLORATORY_MANUAL_REFERENCES_PENDING"
+    },
+    {
+      "code": "T5-04",
+      "name": "3D hibajelzés részteszt",
+      "synthetic_v1_result": "PARTIAL_SYNTHETIC",
+      "real_data_status": "REAL_PLY_PARSE_AND_SYNTHETIC_GEOMETRY_DONE_FGR_ICP_PENDING"
+    },
+    {
+      "code": "T5-05",
+      "name": "91-99 percentilis",
+      "synthetic_v1_result": "PASS_SYNTHETIC",
+      "real_data_status": "REAL_ANCHORED_SYNTHETIC_THRESHOLD_SWEEP_DONE_INDEPENDENT_TEST_PENDING"
+    },
+    {
+      "code": "T5-06",
+      "name": "CSV–2D–3D hiányadat",
+      "synthetic_v1_result": "PASS_SYNTHETIC",
+      "real_data_status": "REAL_FILENAME_MAPPING_DONE_IDENTITY_VERIFICATION_PENDING"
+    },
+    {
+      "code": "T5-07",
+      "name": "Előminősítés logikai próba",
+      "synthetic_v1_result": "PARTIAL_SYNTHETIC",
+      "real_data_status": "OPEN_INDEPENDENT_WELD_QUALITY_LABELS_REQUIRED"
+    },
+    {
+      "code": "T5-08",
+      "name": "As-if stream (offline)",
+      "synthetic_v1_result": "PARTIAL_SYNTHETIC",
+      "real_data_status": "OPEN_ROBOTCELL_REALTIME_TEST_REQUIRED"
+    }
+  ],
+  "warning": "No welding quality status can be inferred from file availability or source-specific synthetic injection tests."
+}

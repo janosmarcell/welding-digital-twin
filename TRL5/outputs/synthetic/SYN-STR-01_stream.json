@@ -1,0 +1,110 @@
+[
+  {
+    "workpiece_id": "G99-S001",
+    "timestamp_offset_s": 3,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S002",
+    "timestamp_offset_s": 6,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S003",
+    "timestamp_offset_s": 9,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S004",
+    "timestamp_offset_s": 12,
+    "csv": true,
+    "image": false,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S005",
+    "timestamp_offset_s": 15,
+    "csv": true,
+    "image": true,
+    "pointcloud": false,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S006",
+    "timestamp_offset_s": 18,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S007",
+    "timestamp_offset_s": 21,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S008",
+    "timestamp_offset_s": 24,
+    "csv": true,
+    "image": false,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S009",
+    "timestamp_offset_s": 27,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S010",
+    "timestamp_offset_s": 30,
+    "csv": true,
+    "image": true,
+    "pointcloud": false,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S011",
+    "timestamp_offset_s": 33,
+    "csv": true,
+    "image": true,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  },
+  {
+    "workpiece_id": "G99-S012",
+    "timestamp_offset_s": 36,
+    "csv": true,
+    "image": false,
+    "pointcloud": true,
+    "origin": "synthetic",
+    "source": "synthetic_baseline_not_real_robot"
+  }
+]

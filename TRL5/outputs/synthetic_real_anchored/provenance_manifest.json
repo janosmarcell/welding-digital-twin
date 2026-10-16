@@ -1,0 +1,19 @@
+{
+  "source_zip_sha256": "bfd05bc7bb5e82f74bba5a7ecac556790a993a53add47f30a7bab77648e298bf",
+  "created_utc": "2026-10-15T11:39:51.087886+00:00",
+  "generator": "trl5_v2_real_anchored",
+  "origin_for_generated_files": "synthetic_derived_from_real",
+  "real_data_never_claimed_as_ground_truth": true,
+  "data_sources": {
+    "csv": "csv_light2/g01_30/g01_s01.csv",
+    "jpg": "csv_light2/g01_30/g01_s01.jpg",
+    "ply": "csv_light2/g01_30/g01_s01.ply"
+  },
+  "reproducibility_seed": 20261015,
+  "file_groups": [
+    "SYN-REAL-CSV-01",
+    "SYN-REAL-CSV-02",
+    "SYN-REAL-2D-01",
+    "SYN-REAL-3D-01"
+  ]
+}

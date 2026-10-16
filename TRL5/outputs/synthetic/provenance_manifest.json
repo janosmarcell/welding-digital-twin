@@ -1,0 +1,62 @@
+[
+  {
+    "scenario": "SYN-CSV-01",
+    "description": "TorchSignal-szakaszhiány",
+    "file": "SYN-CSV-01_missing_segment.csv",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  },
+  {
+    "scenario": "SYN-CSV-02",
+    "description": "Jelkiugrás három csatornában",
+    "file": "SYN-CSV-02_spike.csv",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  },
+  {
+    "scenario": "SYN-2D-01",
+    "description": "Elmosódás/sötétedés/takarás",
+    "file": "SYN-2D-01_blur_occlusion.png",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  },
+  {
+    "scenario": "SYN-3D-01",
+    "description": "Ismert helyű geometriai dudor",
+    "file": "SYN-3D-01_defect.ply",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  },
+  {
+    "scenario": "SYN-3D-02",
+    "description": "Pontzaj/szkennelési hiány",
+    "file": "SYN-3D-02_noisy_missing.ply",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  },
+  {
+    "scenario": "SYN-STR-01",
+    "description": "As-if stream és modalitáshiány",
+    "file": "SYN-STR-01_stream.json",
+    "origin": "synthetic",
+    "seed": 20261015,
+    "generator_version": "1.0.0",
+    "valid_for": "algorithmic_stress_test_only",
+    "real_source": null
+  }
+]
