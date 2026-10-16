@@ -1,0 +1,40 @@
+
+name: Welding Dataset Audit
+
+on:
+  push:
+    paths:
+      - 'datasets/welding_experiments_v1/**'
+      - 'tools/audit_dataset.py'
+      - '.github/workflows/welding-dataset-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run dataset audit
+        run: |
+          python tools/audit_dataset.py \
+            --dataset datasets/welding_experiments_v1 \
+            --output audit-output
+
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: welding-dataset-audit
+          path: audit-output/
+          if-no-files-found: warn
