@@ -1,0 +1,4 @@
+futas,naplo,naplo_sorok,pozicio_kuldve,pozicio_naplozva,pozicio_osszevont,pozicio_P50_ms,pozicio_P95_ms,pozicio_max_ms,aramforras_kuldve,aramforras_kimaradt,aramforras_P50_ms,aramforras_P95_ms,aramforras_max_ms,torch_valtas_db,torch_max_ms,leghosszabb_naplores_ms,megallas_db
+futas1,futas1_2026-10-30_20-14-42.csv,1199,1199,1199,0,36.9,85.4,295.3,115,83,185.1,351.3,830.8,3,266.9,604,0
+futas2,futas2_2026-10-30_20-16-33.csv,1197,1197,1197,0,31.1,73.1,532.0,111,41,133.0,294.0,796.2,3,154.7,753,0
+futas3,futas3_2026-10-30_20-17-39.csv,1206,1206,1206,0,32.4,69.3,119.5,119,91,249.0,464.9,482.7,3,466.1,737,0
