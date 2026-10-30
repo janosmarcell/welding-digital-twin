@@ -1,0 +1,5 @@
+esemeny,csv_sor,csv_ido_s,video_elso_kepkocka_s,video_elozo_kepkocka_s,eltolas_s
+1. varrat: TorchSignal 0→1 (pipa megjelenik),43,1.054,5.27,5.236,4.216
+1. varrat: TorchSignal 1→0 (pipa eltűnik),413,9.858,14.1,14.066,4.242
+2. varrat: TorchSignal 0→1,427,10.298,14.499,14.466,4.201
+3. varrat: TorchSignal 1→0,1167,28.074,32.293,32.259,4.219
