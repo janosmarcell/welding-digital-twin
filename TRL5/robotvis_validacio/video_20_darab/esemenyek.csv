@@ -1,0 +1,4 @@
+esemeny,csv_sor,csv_ido_s,video_elso_kepkocka_s,video_elozo_kepkocka_s,eltolas_s
+1. varrat: TorchSignal 0→1 (pipa megjelenik),43,1.098,3.444,3.411,2.346
+"1. varrat: értékváltás 21,4 V/160 A → 19,8 V/127,6 A/3,11 m/min",50,1.335,3.677,3.644,2.342
+3. varrat: TorchSignal 1→0 (pipa eltűnik),1169,28.081,30.433,30.4,2.352
