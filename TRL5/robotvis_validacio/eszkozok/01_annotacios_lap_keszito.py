@@ -45,19 +45,21 @@ def plot_file(df, out_png, title):
     ax[0].set_yscale("symlog", linthresh=0.1); ax[0].set_ylim(0, max(1.0, float(np.percentile(step, 99.5))))
     ax[-1].set_xlabel("Sor (0-tól indexelve, a fejléc nem számít)")
     ax[0].set_title(title, fontsize=11)
-    fig.tight_layout(); fig.savefig(out_png, dpi=80); plt.close(fig)
+    fig.tight_layout(); fig.savefig(out_png, dpi=110); plt.close(fig)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--out", required=True)
     ap.add_argument("--per-group", type=int, default=4); ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--exclude", default="", help="vesszővel elválasztott azonosítók (pl. g01_s10,g01_s30), amelyeket az annotátor már látott")
     a = ap.parse_args()
     rng = random.Random(a.seed)
-    os.makedirs(os.path.join(a.out, "abrak"), exist_ok=True)
+    os.makedirs(os.path.join(a.out, "abrak"), exist_ok=True); os.makedirs(os.path.join(a.out, "csv_vak"), exist_ok=True)
     sheet, key, picked = [], [], []
     for gdir in sorted(glob.glob(os.path.join(a.dataset, "g0*"))):
-        files = sorted(glob.glob(os.path.join(gdir, "*.csv")))
+        excl = {e.strip() for e in a.exclude.split(",") if e.strip()}
+        files = [f for f in sorted(glob.glob(os.path.join(gdir, "*.csv"))) if os.path.basename(f)[:-4] not in excl]
         chosen = set(rng.sample(files, min(a.per_group, len(files))))
         # a g02_s33 (két aktív szakasz) kivételt mindig bevesszük, ha van
         chosen |= {f for f in files if os.path.basename(f) == "g02_s33.csv"}
@@ -68,28 +70,32 @@ def main():
         if list(df.columns) != COLS:
             sys.exit(f"Váratlan oszlopok: {f}")
         segs = active_segments(df["TorchSignal"].to_numpy())
+        df.drop(columns=["TorchSignal"]).to_csv(os.path.join(a.out, "csv_vak", sid + ".csv"), index=True, index_label="sor", encoding="utf-8-sig")
         rel = os.path.relpath(f, a.dataset).replace(os.sep, "/")
         plot_file(df, os.path.join(a.out, "abrak", sid + ".png"), f"{sid} – {len(df)} sor; három varratot jelöljön meg időrendben")
         for k in (1, 2, 3):  # a kísérleti terv szerint darabonként három varrat készül
-            sheet.append(dict(azonosito=f"{sid}_v{k}", csv_fajl=rel, abra=f"abrak/{sid}.png", varrat_sorszam=k,
+            sheet.append(dict(azonosito=f"{sid}_v{k}", csv_fajl=f"csv_vak/{sid}.csv", abra=f"abrak/{sid}.png", varrat_sorszam=k,
                               kezdet_sor="", veg_sor="", megjegyzes="", annotator="", datum=""))
             s, e = segs[k - 1] if k <= len(segs) else ("", "")
             key.append(dict(azonosito=f"{sid}_v{k}", auto_kezdet_sor=s, auto_veg_sor=e, auto_szakaszok_szama=len(segs)))
     pd.DataFrame(sheet).to_csv(os.path.join(a.out, "annotacio_sablon.csv"), index=False, encoding="utf-8-sig")
     pd.DataFrame(key).to_csv(os.path.join(a.out, "automata_kulcs.csv"), index=False, encoding="utf-8-sig")
     open(os.path.join(a.out, "ANNOTACIO_UTMUTATO.md"), "w", encoding="utf-8").write(
-"""# T5-01 annotációs útmutató
+"""# T5-01 vak annotáció – útmutató az annotátornak
 
-Az `annotacio_sablon.csv` minden sorához tartozik egy ábra (`abrak/`). Az ábra a feszültséget, az áramot, a huzalsebességet és a szerszám soronkénti lépésközét mutatja a CSV soraihoz (0-tól indexelve) – a TorchSignal oszlopot szándékosan nem.
+**Feladat:** minden kiválasztott hegesztési naplóban megjelölni a három varrat kezdő és záró sorát. Becsült idő: 2–3 óra.
 
-1. Nyissa meg a sorhoz tartozó ábrát. A fájlban három varrat van; a `varrat_sorszam` az időrendi sorrendet adja (1 = első).
-2. `kezdet_sor`: az első sor, ahol a varrat készítése megkezdődik (az ív begyújt: az áram/feszültség/huzalsebesség felfut, és a szerszám a varrat mentén elindul).
-3. `veg_sor`: az utolsó sor, ahol a varratot még készíti (az ív kialszik, az áram/huzalsebesség lecsökken).
-4. Ha egy varratnál nem egyértelmű az esemény, hagyja üresen a mezőt, és írja a `megjegyzes` oszlopba, miért. Ne becsüljön.
-5. Töltse ki az `annotator` és a `datum` oszlopot. A kulcsfájlt (`automata_kulcs.csv`) ne nyissa meg a kitöltés előtt.
-6. Opcionális, de ajánlott: a robotprogram ARCON/ARCOF sorai vagy videó alapján ellenőrizze a határokat.
+**Amit kap:** `abrak/` (fájlonként egy ábra: a szerszám lépésköze, feszültség, áram, huzalsebesség a sorszám függvényében), `csv_vak/` (ugyanazok a naplók a TorchSignal oszlop nélkül, a `sor` oszlop a sorszám), `annotacio_sablon.csv` / `.xlsx` (ezt kell kitölteni).
 
-A kiértékelés: `02_annotacio_kiertekelo.py --kulcs automata_kulcs.csv --kitoltott annotacio_sablon.csv --out <mappa>`.
+**Fontos:** ne nyissa meg a tárolóban lévő eredeti CSV-ket és semmilyen „kulcs” fájlt, és ne beszélje meg az eredményt a kitöltés előtt senkivel. Ez teszi a vizsgálatot vakká.
+
+## Lépések
+
+1. Nyissa meg a sorhoz tartozó ábrát. Egy naplóban három varrat van, időrendben (`varrat_sorszam` 1, 2, 3).
+2. A varrat **kezdete** ott van, ahol a szerszám lépésköze a varrat menti egyenletes, kis értékre (kb. 0,1–0,3 mm/sor) áll be, és az áram, feszültség, huzalsebesség a hegesztési szintre ugrik. A **vége** az utolsó sor, ahol ez még tart; utána a szerszám gyorsan elmozdul (nagy lépésköz), vagy az értékek leesnek.
+3. Az ábrán keresse meg a helyet, majd a `csv_vak/` fájlban a `sor` oszlopból írja ki a pontos sorszámot a `kezdet_sor` és a `veg_sor` oszlopba.
+4. Ha egy határ nem egyértelmű, hagyja üresen, és írja a `megjegyzes` oszlopba, miért. Ne becsüljön. Ha egy naplóban nem lát három varratot, azt is írja meg.
+5. Töltse ki az `annotator` (név) és a `datum` oszlopot, mentse el, és adja vissza a fájlt a végrehajtónak.
 """)
     print(f"{len(picked)} fájl, {len(sheet)} annotálandó varrat -> {a.out}")
 
