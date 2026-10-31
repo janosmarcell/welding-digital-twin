@@ -1,0 +1,5 @@
+esemeny,csv_sor,csv_ido_s,video_elso_kepkocka_s,video_elozo_kepkocka_s,eltolas_s
+1. varrat: TorchSignal 0→1,43,1.136,5.473,5.439,4.337
+1. varrat: TorchSignal 1→0,316,7.924,12.270,12.237,4.346
+2. varrat: TorchSignal 0→1,329,8.334,12.703,12.670,4.369
+3. varrat: TorchSignal 1→0,892,22.222,26.564,26.531,4.342

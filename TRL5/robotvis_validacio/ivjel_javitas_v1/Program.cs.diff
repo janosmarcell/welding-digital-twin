@@ -1,0 +1,85 @@
+--- eredeti/Program.cs	2026-10-31 10:26:46.483704219 +0100
++++ RobotComm/Program.cs	2026-10-31 10:26:46.559085505 +0100
+@@ -1,4 +1,4 @@
+-﻿using System;
++using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+@@ -19,12 +19,23 @@
+ 
+     private bool stub = false;
+ 
++    // Ívjel a robotvezérlő I/O-jából (HSE IORead). -1 = kikapcsolva, ekkor az üzenet a régi 6 mezős formátum.
++    // A logikai számot és a bitet a cella I/O-kiosztásából kell megadni: --arc-io <logikai szám> --arc-bit <0..7>
++    private int arcIo = -1;
++    private int arcBit = 0;
++
+     HSEClient hsec;
+     TcpListener server;
+ 
+-    public Program(string IPAddress, bool stub)
++    public Program(string IPAddress, bool stub, int arcIo, int arcBit)
+     {
+         this.stub = stub;
++        this.arcIo = arcIo;
++        this.arcBit = arcBit;
++
++        if (arcIo >= 0) {
++            Console.WriteLine("Arc signal from robot I/O: logical number " + arcIo + ", bit " + arcBit);
++        }
+ 
+         Console.WriteLine("Setting up connection to the robot at " + IPAddress + " ...");
+ 
+@@ -53,6 +64,16 @@
+             coords += Convert.ToString(robotPos.Rx, CultureInfo.InvariantCulture) + ",";
+             coords += Convert.ToString(robotPos.Ry, CultureInfo.InvariantCulture) + ",";
+             coords += Convert.ToString(robotPos.Rz, CultureInfo.InvariantCulture);
++
++            if (arcIo >= 0) {
++                byte io;
++                // 7. mező: 1 = ív, 0 = nincs ív, -1 = az I/O olvasása nem sikerült
++                if (hsec.IORead(arcIo, out io).IsOk) {
++                    coords += "," + (((io >> arcBit) & 1) == 1 ? "1" : "0");
++                } else {
++                    coords += ",-1";
++                }
++            }
+         }
+ 
+         coords += ";";
+@@ -73,6 +94,10 @@
+             steps = 0;
+         }
+ 
++        if (arcIo >= 0) {
++            return stubx + ",0.011,340.194,0.0078,74.4678,0.0097,0;";
++        }
++
+         return stubx + ",0.011,340.194,0.0078,74.4678,0.0097;";
+     }
+ 
+@@ -160,16 +185,22 @@
+     public static void Main(string[] args)
+     {
+         bool stub = false;
++        int arcIo = -1;
++        int arcBit = 0;
+ 
+         for (int i = 0; i < args.Length; ++i) {
+             if (args[i] == "--stub") {
+                 stub = true;
+ 
+                 Console.WriteLine("Using stub client!");
++            } else if (args[i] == "--arc-io" && i + 1 < args.Length) {
++                arcIo = int.Parse(args[++i], CultureInfo.InvariantCulture);
++            } else if (args[i] == "--arc-bit" && i + 1 < args.Length) {
++                arcBit = int.Parse(args[++i], CultureInfo.InvariantCulture);
+             }
+         }
+ 
+-        Program p = new Program("10.192.70.130", stub);
++        Program p = new Program("10.192.70.130", stub, arcIo, arcBit);
+ 
+         if (!stub) {
+             p.MainLoop();

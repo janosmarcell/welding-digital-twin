@@ -1,0 +1,91 @@
+--- eredeti/Connector.gd	2026-10-31 10:26:46.485755316 +0100
++++ RobotVis/connector/Connector.gd	2026-10-31 10:26:46.559294227 +0100
+@@ -18,6 +18,14 @@
+ 
+ var last_stored_line : String = ""
+ 
++# Ívjel a RobotComm 7. mezőjéből (robot I/O). -1 = nincs (régi 6 mezős üzenet vagy olvasási hiba).
++var robot_arc : int = -1
++# A weboldalról olvasott TorchSignal (összehasonlításhoz külön oszlopban naplózzuk).
++var web_torch_signal : bool = false
++# Életjel: nyugalomban is ír egy sort ennyi időnként, hogy a kiesések látszódjanak.
++const HEARTBEAT_MSECS : int = 1000
++var last_store_msecs : int = 0
++
+ var weld_unit_connector : Node
+ var gui : Node
+ var robot_scene_node : Node
+@@ -45,7 +53,7 @@
+ 	var f : File =  File.new()
+ 	f.open(log_file, File.WRITE)
+ 	
+-	f.store_line("SysTimeMsecs,X,Y,Z,Rx,Ry,Rz,TorchSignal,Voltage,Current,WireFeedSpeed")
++	f.store_line("SysTimeMsecs,X,Y,Z,Rx,Ry,Rz,TorchSignal,Voltage,Current,WireFeedSpeed,TorchSignalWeb,TorchSource")
+ 	
+ 	var fabsp : String = f.get_path_absolute()
+ 	
+@@ -57,7 +65,12 @@
+ 	f.close()
+ 	
+ func process_weld_unit():
+-	torch_signal = weld_unit_connector.torch_signal
++	web_torch_signal = weld_unit_connector.torch_signal
++	# Ha van robot-ívjel, az az elsődleges; különben a weboldalé.
++	if robot_arc >= 0:
++		torch_signal = robot_arc == 1
++	else:
++		torch_signal = web_torch_signal
+ 	voltage = weld_unit_connector.voltage
+ 	current = weld_unit_connector.current
+ 	weld_speed = weld_unit_connector.wire_feed_speed
+@@ -124,21 +137,45 @@
+ 		var s : String = sps[i]
+ 		var f : PoolRealArray = s.split_floats(",", false)
+ 			
+-		if f.size() != 6:
++		if f.size() != 6 and f.size() != 7:
+ 			continue
++		
++		var torch_source : String = "web"
++		if f.size() == 7:
++			robot_arc = int(f[6])
++			# a pozíciót a régi 6 mezős alakban naplózzuk
++			var parts : PoolStringArray = s.split(",", false)
++			parts.resize(6)
++			s = parts.join(",")
++		else:
++			robot_arc = -1
++		
++		if !manual_mode:
++			if robot_arc >= 0:
++				torch_signal = robot_arc == 1
++				torch_source = "robot"
++			else:
++				torch_signal = web_torch_signal
++		else:
++			torch_source = "manual"
+ 			
+ 		s += "," + str(int(torch_signal)) + ","
+ 		s += str(voltage) + ","
+ 		s += str(current) + ","
+-		s += str(weld_speed)
+-			
+-		if last_stored_line == s:
++		s += str(weld_speed) + ","
++		s += str(int(web_torch_signal)) + ","
++		s += torch_source
++		
++		var stms : int = OS.get_system_time_msecs()
++		
++		# Változásra ír; azonos sort csak életjelként, HEARTBEAT_MSECS-enként.
++		if last_stored_line == s and stms - last_store_msecs < HEARTBEAT_MSECS:
+ 			continue
+ 			
+ 		last_stored_line = s
++		last_store_msecs = stms
+ 		
+ 		if logging:
+-			var stms : int = OS.get_system_time_msecs()
+ 			file.store_line(str(stms) + "," + s)
+ 		
+ 		emit_signal("coordinates_received", f[0], f[1], f[2], f[3], f[4], f[5])

@@ -18,7 +18,7 @@
 | futas3 (20, 2023-07-12) | 32 / 69 / 120 | 249 / 465 / 483 | 933, 270, 973, 466, 979, 463 | 0 |
 
 - **Pozíció (RobotComm-út):** mind a 3602 elküldött pozíció megjelent a naplóban; P95 ≤ 85 ms.
-- **Áramforrás-értékek (Selenium-olvasás):** P95 ≤ 465 ms, de a RobotVis a weboldalt kb. 0,25–1 s-onként olvassa (a naplóban az értékváltások közötti idő mediánja 245–1014 ms), ezért a gyorsabban (kb. 114 ms-onként) változó értékek 36–76%-a nem kerül a naplóba.
+- **Áramforrás-értékek (Selenium-olvasás):** P95 ≤ 465 ms, de a naplóban az értékváltások közötti idő mediánja 245–1014 ms, miközben a forrásban kb. 230 ms: a Selenium-út effektíven ritkábban frissít a forrásnál, és a forrásértékek 36–76%-a nem kerül a naplóba.
 - **TorchSignal:** 18 váltásból 17 megjelent, legfeljebb kb. 0,98 s késéssel. **Egy rövid kikapcsolás (futas2, az 1. és 2. varrat közötti kb. 0,45 s) egyáltalán nem jelent meg**, így a naplóban a két varrat egy szakasznak látszik. Ugyanez a jelenség, mint a cellás `g02_s33` naplóban.
 - **Megállás:** nincs 2 s-nál hosszabb naplórés; a leghosszabb rés (0,60–0,75 s) a forrás saját szünete (varratok közötti mozgás).
 

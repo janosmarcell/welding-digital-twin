@@ -1,0 +1,50 @@
+--- /tmp/claude-0/-home-claude/b7b93bd8-b0f2-533d-b18d-9e054b796b08/scratchpad/tools/robotvis/04_visszajatszo.py	2026-10-30 19:43:24.812536495 +0100
++++ 04_visszajatszo.py	2026-10-31 10:26:46.559464267 +0100
+@@ -97,8 +97,11 @@
+     return time.time() * 1000.0  # ugyanaz a rendszeróra, mint a RobotVis get_system_time_msecs()
+ 
+ 
++IVJEL = False  # --ivjel: a TorchSignal 7. mezőként a pozícióüzenetben is megy (mint a javított RobotComm-nál)
++
++
+ def run_one(conn, run_id, rows, speed, log):
+-    last_pos, last_pow = None, None
++    last_pos, last_pow, last_arc = None, None, None
+     start = now_ms()
+     seq = 0
+     for r in rows:
+@@ -114,8 +117,12 @@
+                 STATE.update(seq=r["i"], torch=r["torch"], voltage=r["voltage"], current=r["current"], wfs=r["wfs"])
+             log.writerow([run_id, "aramforras", r["i"], f"{now_ms():.1f}", r["torch"], r["voltage"], r["current"], r["wfs"]])
+             last_pow = pw
+-        if r["pos"] != last_pos:
+-            msg = "{0}, {1}, {2}, {3}, {4}, {5};".format(*r["pos"])
++        if r["pos"] != last_pos or (IVJEL and r["torch"] != last_arc):
++            if IVJEL:
++                msg = "{0}, {1}, {2}, {3}, {4}, {5}, {6};".format(*r["pos"], r["torch"])
++                last_arc = r["torch"]
++            else:
++                msg = "{0}, {1}, {2}, {3}, {4}, {5};".format(*r["pos"])
+             try:
+                 conn.sendall(msg.encode("ascii"))
+             except OSError as e:
+@@ -135,7 +142,10 @@
+     ap.add_argument("--http-port", type=int, default=8000)
+     ap.add_argument("--speed", type=float, default=1.0, help="1.0 = eredeti időzítés")
+     ap.add_argument("--out", default="visszajatszas_naplo")
++    ap.add_argument("--ivjel", action="store_true", help="a TorchSignal a pozícióüzenet 7. mezőjeként is megy (javított RobotComm szimulálása)")
+     a = ap.parse_args()
++    global IVJEL
++    IVJEL = a.ivjel
+ 
+     os.makedirs(a.out, exist_ok=True)
+     Handler.page = make_page()
+@@ -155,7 +165,7 @@
+     logf = open(os.path.join(a.out, "kuldesi_naplo.csv"), "w", newline="", encoding="utf-8")
+     log = csv.writer(logf)
+     log.writerow(["futas", "fajta", "forras_sor", "t_kuldes_ms", "a", "b", "c", "d", "e", "f"])
+-    meta = dict(indulas_ms=now_ms(), csv=[os.path.abspath(p) for p in a.csv], speed=a.speed, port=a.port)
++    meta = dict(indulas_ms=now_ms(), csv=[os.path.abspath(p) for p in a.csv], speed=a.speed, port=a.port, ivjel=a.ivjel)
+ 
+     for k, path in enumerate(a.csv, 1):
+         rows = load_csv(path)
