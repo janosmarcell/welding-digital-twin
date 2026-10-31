@@ -1,33 +1,36 @@
-# TRL5 – valós + szintetikus validáció (v2)
+# TRL 5 – Folyamatadat-réteg validációja releváns környezetben
 
-## Elkészült eredmények
+**Állapot (2026-10-31):** nem lezárt. A T5-08 késleltetési kapu mérve teljesül; a T5-01 vak annotáció, a kezelői próba és az aláírások hiányoznak. Részletek: `Hegesztesi_DT_TRL5_Leiras.docx`.
 
-A 2026.10.15-i futás a felhasználó `csv_light2.zip` csomagjából dolgozik. A bemeneti SHA-256 hash a jegyzőkönyvben van. Az alapcsomagban 150 CSV, 20 JPG, 18 PLY szerepel. Az összes CSV, JPG és PLY beolvasható. A 150 CSV közül 149 három aktív TorchSignal-szakaszt, a `g02_s33` fájl kettőt tartalmaz. 17 munkadarabhoz áll rendelkezésre mindhárom fájltípus azonos fájltővel; **ez nem jelenti a kézi mintaszintű azonosság igazolását**.
+**Hatókör:** a RobotComm–RobotVis folyamatadat-réteg (robotpozíció, áramforrás-adatok gyűjtése, kijelzése, naplózása a valós robotcellában). A képi és 3D réteg kapui (T5-03 … T5-07) és a jelanomália-detektor (T5-02) a TRL 6-ba kerültek; lásd [`SZINTZARASI_KRITERIUMOK.md`](SZINTZARASI_KRITERIUMOK.md).
 
-A szintetikus stresszteszteket a v1 hat általános forgatókönyve és az eredeti valós adatokból generált kiegészítő szcenáriók adják. A `synthetic_real_anchored` állományok **nem valós hibás hegesztések**, hanem ismert injektált eltérések a valós bázismintában.
+## Kapuk és bizonyítékok
 
-### Futtatás VS Code-ban
+| Kapu | Állapot | Hol |
+| --- | --- | --- |
+| T5-01 eseményfelismerés (vak annotáció, 21 napló, 63 varrat) | nyitott – az annotációs csomag kész | `robotvis_validacio/eszkozok/01–02_*`; később `robotvis_validacio/annotacio_T5-01/` |
+| T5-08 streaming késleltetés | **teljesül (B)** – visszajátszás 3 futás (P95 ≤ 85 ms / ≤ 465 ms), 15 cellás videó (≤ kb. 0,88 s) | `robotvis_validacio/visszajatszas_2026-10-30/`, `robotvis_validacio/video_*_darab/`, `robotvis_validacio/T5-08_video_osszesites.md` |
+| Kezelői próba | nyitott – a forgatókönyv kész | később `robotvis_validacio/kezeloi_proba_<dátum>/` |
+| Adatteljesség (korlát) | dokumentált; javítás előkészítve | `robotvis_validacio/naplo_folytonossag/`, `robotvis_validacio/ivjel_javitas_v1/` |
+
+A lezárásig hátralévő lépések: [`NYITOTT_ADATIGENY.md`](NYITOTT_ADATIGENY.md). A záró kiértékelés egy paranccsal: `robotvis_validacio/eszkozok/06_trl5_zaras.py` (leírás: `robotvis_validacio/eszkozok/README.md`).
+
+## Mappák
+
+| Mappa | Tartalom |
+| --- | --- |
+| `robotvis_validacio/` | A TRL 5 tényleges bizonyítékai: eszközök, visszajátszásos mérés, 15 cellás videó kiértékelése, naplófolytonosság (151 futás), ívjel-javítás és forráskód-elemzés |
+| `src/`, `outputs/`, `run_windows.bat`, `requirements.txt` | A 2026-10-15-i v2 előzetes validáció (valós adatleltár + szintetikus stressztesztek). **Előzmény**, nem zárókapu-bizonyíték; az `outputs/synthetic*` mappák D osztályú, szintetikus adatok |
+| `documentation/` | Csomag-eredet (SHA-256) és GitHub-integrációs jegyzet |
+
+### A v2 előzetes validáció futtatása (előzmény)
 
 - Python 3.10+; `python -m pip install -r requirements.txt`
-- `python src/run_real_validation.py --real-zip "C:\\adatok\\csv_light2.zip"`
-- vagy Windowsban: `run_windows.bat "C:\\adatok\\csv_light2.zip"`
-- tesztek: `python -m pytest src/test_validation.py -q` (pytest telepítése szükséges)
+- `python src/run_real_validation.py --real-zip "C:\\adatok\\csv_light2.zip"` vagy `run_windows.bat "C:\\adatok\\csv_light2.zip"`
+- tesztek: `python -m pytest src/test_validation.py -q`
 
-A CSV/JPG/PLY **nincs duplikálva a ZIP-ben**; a felhasználó eredeti `csv_light2.zip` mellé kell tenni és `--real-zip` útvonallal megadni. A program az eredeti ZIP-et nem módosítja.
+A v2 eredményei (150 CSV, 20 JPG, 18 PLY beolvasva; szintetikus, valós bázisra injektált eltérések) a TRL 4 és a TRL 6 tervezéséhez adtak bemenetet. A `synthetic_real_anchored` állományok **nem valós hibás hegesztések**.
 
-A gépi kimenetek a `outputs/` mappába kerülnek. A `outputs/TRL5_valos_adatos_osszefoglalo.xlsx` áttekintés; a `outputs/TRL5_v2_futtatasi_jegyzokonyv.md` a tudományosan védhető megállapítások és korlátok listája.
+## Bizonyítékosztályok
 
-## Nyolc teszt – értelmezés
-
-- T5-01: valós CSV szerkezet átvizsgálva; kézzel annotált események pontosságvizsgálata nyitott.
-- T5-02: valódi mintából képzett jelkiugrás, ugyanazon minta alapján beállított egyszerű tesztdetektor; független valódi hiba nélkül nem minősül végleges anomáliadetektornak.
-- T5-03: minden JPG leolvasva, feltáró QC + kontrollált képtorzítás; a v1 élesség/kontraszt döntési függvénye nem fogott meg minden takarást, ezért finomítandó.
-- T5-04: minden PLY vertexrésze beolvasva; valós PLY-ből mesterségesen eltolt pontokkal próba. Az **FGR/ICP igazolása nincs elvégezve**, a teljes modell nem futott.
-- T5-05: 91–99% rangpercentilis sweep az ismert szintetikus eltérésen. A 98% eredmény az *adott próba sajátossága*, nem állandó minőségi határ.
-- T5-06: fájlnév-megfeleltetés és hiánylista kész, fizikai azonosító hitelesítése szükséges.
-- T5-07: hiányzik a független valós OK/NOK címke és a megfelelő konfúziós mátrix.
-- T5-08: szükséges a tényleges robotcellás hálózati késleltetés és kezelői próba.
-
-## Szintzárási státusz
-
-**A TRL5 nem lezárt.** Reprodukálható adatinventár, valós adatokra épülő első stressztesztek, és validációs hiánylista készült. A valós hibák detektálási pontossága, az ISO 5817 szerinti minőségmegfelelőség, a fizikai mérőrendszer felbontása és egy digitális iker üzemi működése a mostani fájlok alapján nem igazolt.
+A – publikált; B – a nyers adatból újraszámolt; C – másodlagos; D – szintetikus (csak módszer-bemutatás).

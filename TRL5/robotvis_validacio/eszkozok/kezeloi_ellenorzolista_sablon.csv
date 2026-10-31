@@ -1,0 +1,9 @@
+pont,ellenorzesi_pont,valasz,megjegyzes
+1,"A kezelő a fejlesztő segítsége nélkül, a forgatókönyv alapján el tudta indítani a RobotVis-t, a böngésző-kapcsolatot és a felvételt (igen/nem)",,
+2,A kijelzett virtuális robot a visszajátszott pályán folyamatosan mozgott (igen/nem),,
+3,A hegesztés kezdetét és végét a kijelző jelezte – TorchSignal váltás látható volt (igen/nem),,
+4,"A feszültség, az áram és a huzalsebesség értéke frissült a kijelzőn (igen/nem)",,
+5,"Kapcsolatmegszakadás esetén a kijelző jelezte a hibát (igen/nem/nem tesztelt)",,
+6,Újracsatlakozás a kezelő beavatkozásával megoldható volt (igen/nem/nem tesztelt),,
+7,A kezelő a kijelzett adatokat érthetőnek találta (1–5),,
+8,A futások nyers naplóját elmentették (igen/nem),,

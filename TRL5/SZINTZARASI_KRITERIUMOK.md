@@ -1,24 +1,53 @@
-# TRL5 mérhető szintzárási követelmények — jóváhagyandó v1
+# TRL 5 szintzárási kritériumok – v3 (2026-10-31, jóváhagyandó)
 
-**Fontos:** alábbi értékek tervezett mérési kapuk, **nem teljesített eredmények** és nem az ISO 5817 követelményértékei. A mintaméretet, hibakategóriákat és számszerű határokat **a valós vizsgálat kezdete előtt** projektvezető/minőségügyi szakértő rögzíti.
+**Ez a változat felváltja a 2026-10-16-i v1-et.** A kapuk javaslatok: a projektvezető és a minőségügyi szakértő a jóváhagyási lapon (a TRL 5 dokumentáció melléklete) rögzíti őket, **a T5-01 kiértékelése és a kezelői próba előtt**. Az értékek nem az ISO 5817 követelményei.
 
-| Teszt | Mérőszám / képlet | Kiinduló javasolt tesztkapu | Bizonyíték, amit létre kell hozni |
-|---|---|---|---|
-| T5-01 | Pontosan felismert, manuálisan annotált kezdő- és záróesemények aránya; külön struktúrahiba-visszautasítás | Valós mintákon cél >= 99% eseményegyezés, max. 1 rögzített mintavételi periódus időkülönbséggel; minden kivétel listázva | Annotált valós CSV + automatikus vs. manuális összevetés |
-| T5-02 | Pontosság, recall, TP/FP/FN injektált jelanomáliákon | Szintetikus validáción recall >= 95%; valós hibadetektálási limit csak szakértői címkékkel | Injektálási napló + elkülönített FP/FN riport |
-| T5-03 | Nem értékelhető képek felismerése; kontúr/szélesség eltérés manuális referenciához | Kontraszt, elmosódás és takarás esetén nincs automatikus OK; a mérési eltérés mm-ben csak ismert képi skála mellett értékelhető | Valós JPG + képminőség-jegyzőkönyv + mérési referencia |
-| T5-04 | FGR/ICP fitness és RMSE, DBSCAN lokalizáció IoU / pozíciós hiba | Szintetikus ismert hibákon javasolt IoU >= 0.70; valós mintákra hibatípusonként és ismételt szkennelés alapján külön határ | Valós és szintetikus PLY + ismert hibahely + vizuális ellenőrzés |
-| T5-05 | 91..99%-os szenzitivitási görbe; hibatípusonként precision, recall, IoU | Kilenc pont értékelve; választott paraméter elkülönített, független teszten rögzítve; a 97% nem alapértelmezett minőségi határ | Görbék, kiválasztási jegyzőkönyv, rögzített paraméterkonfiguráció |
-| T5-06 | Helyes CSV–2D–3D hozzárendelési arány; hiányadat visszautasítás | 100% bizonyítható azonosító egyezés a hitelesített mintatérképen; hiányos/ellentmondásos darab nem kap automatikus OK-t | Mapping CSV, lefedettségi riport, ellenpéldák |
-| T5-07 | Független minősítési ground truth alapján TP/FP/TN/FN, külön false-OK | Előzetes javaslat: **0 hamis OK** a vizsgált hibás minták között; kétoldali 95% CI és mintaméret feltüntetése, 0 eset sem bizonyít zéró valós kockázatot | Független minősítés, összezárt confusion matrix, CI |
-| T5-08 | Releváns környezeti streaming P50/P95 késleltetés, adatvesztés, kezelői helyes használat | Streaming kijelzés P95 <= 2 s mint vizsgálati cél; képfeldolgozás és 3D riport külön folyamatidővel; 3 ismételt kontrollált futás | Időbélyegzett log + kezelői aláírt jegyzőkönyv |
+## Hatókör
 
-## Elengedhetetlen TRL5 zárófeltételek
+A TRL 5 a **folyamatadat-rétegre** vonatkozik (RobotComm, RobotVis: robotpozíció és áramforrás-adatok gyűjtése, kijelzése, naplózása a valós robotcellában).
 
-- **Adatok eredete:** `real` / `synthetic` végig elkülönül, készletválasztás forrásmunkadarab alapján (származtatott minta nem kerülhet a végső független valós tesztbe ugyanannak a darabnak tanítóváltozataként).
-- **Releváns környezet:** legalább egy dokumentált robotcellás, üzemszerű munkafolyamat, mérési feltételekkel, technológiai változtatással, környezeti paraméterekkel és kezelői beavatkozási menettel.
-- **Műszaki korlát:** repedés, belső hiba és térfogati hibák automatikus OK-ja 3D felületi letapogatásból nem adható.
-- **Rendszervédelem:** hiányzó 2D/3D, sikertelen illesztés vagy adatkapcsolási ellentmondás esetén `ELLENŐRIZENDŐ` / `NEM ÉRTÉKELHETŐ` státusz.
-- **Kimenet:** futtatható, reprodukálható szoftververzió, gépi mérési riportok, emberi validációs jegyzőkönyv, verzió/futtatási azonosító, vállalt küszöbértékek és nyitott hibák listája.
+| Réteg | Kapu | Hová tartozik |
+| --- | --- | --- |
+| Folyamatadat (RobotComm, RobotVis) | T5-01, T5-08, kezelői próba | **TRL 5** |
+| Jelanomália-detektor | T5-02 | TRL 6 (javasolt áthelyezés: csak valós zavart darabokon igazolható, ezek a TRL 6 cellanapján készülnek) |
+| 2D varratkép | T5-03 | TRL 6 |
+| 3D pontfelhő (FGR–ICP–DBSCAN) | T5-04, T5-05, T5-07 | TRL 6 |
+| CSV–2D–3D hozzárendelés | T5-06 | TRL 6 |
 
-A teljes TRL5-t csak a **valós, releváns környezeti teszt eredményével** és a jóváhagyott szintzárási dokumentum alapján szabad lezártnak jelölni.
+A képi és a 3D réteg a TRL 4 szinten marad, amíg a TRL 6 kapui nem teljesülnek. A T5-02 … T5-07 kapuk megfogalmazása a `TRL6/` dokumentációban szerepel; az itteni v1-táblázat ezekre már nem érvényes.
+
+## Zárókapuk
+
+| Kapu | Mérőszám | Feltétel (javaslat) | Állapot (2026-10-31) | Bizonyíték |
+| --- | --- | --- | --- | --- |
+| **T5-01** eseményfelismerés | A vakon, kézzel annotált kezdő- és záróesemények aránya, amelyeket az automatikus szakaszolás legfeljebb 1 sor eltéréssel talál meg | 21 napló, 63 varrat, kb. 124 esemény; a jóváhagyási lapon választandó: (a) pontbecslés ≥ 99% **vagy** (b) Wilson 95% CI alsó határa ≥ 95%; minden kivétel listázva | **Nyitott:** az annotációs csomag kész, az annotáció hiányzik. A szerkezeti ellenőrzés kész (151 napló, B) | `robotvis_validacio/eszkozok/01–02_*`, később `robotvis_validacio/annotacio_T5-01/` |
+| **T5-08** streaming késleltetés | A forrástól a naplóig, illetve a CSV-időbélyegtől a kijelzésig tartó késés; adatvesztés; megállás | P95 ≤ 2 s minden futásban; ≥ 3 ismételt futás; az adatvesztés és a megállások megadva | **Teljesül (B):** visszajátszás 3 futás: pozíció P95 ≤ 85 ms, áramforrás-érték P95 ≤ 465 ms, megállás 0; 15 cellás videó (5 sebességcsoport, 57 esemény): felső becslés ≤ kb. 0,88 s | `robotvis_validacio/visszajatszas_2026-10-30/`, `robotvis_validacio/video_*_darab/`, `T5-08_video_osszesites.md` |
+| **Kezelői próba** | Egy nem fejlesztő kezelő a forgatókönyv szerint, segítség nélkül végigviszi a visszajátszásos futást | Az ellenőrzőlista 1–4. pontja „igen”, a 7. pont (érthetőség, 1–5) legalább 3; a futások naplója megvan | **Nyitott:** a forgatókönyv kész, a próba hiányzik | később `robotvis_validacio/kezeloi_proba_<dátum>/` |
+
+### Dokumentált korlát (nem kapu)
+
+**Adatteljesség:** a RobotVis az áramforrás-értékeket a weboldalról olvassa, ezért a naplóban kb. 0,25–1 s-onként változnak (a forrás kb. 0,23 s-onként); a visszajátszásban 18 TorchSignal-váltásból 1 (egy kb. 0,45 s-os ívszünet) nem került a naplóba. Az ok a forráskódból azonosítva; a javítás (ívjel a robot I/O-ból, `robotvis_validacio/ivjel_javitas_v1/`) a TRL 6 előtt kerül be, és ott mérendő. A jóváhagyási lapon elfogadandó korlátként.
+
+## Szerepek
+
+| Szerep | Feltétel |
+| --- | --- |
+| Végrehajtó (próbavezető) | kezeli a T5-01 kulcsát, futtatja a kiértékelést, kitölti a jegyzőkönyv mért részeit |
+| Annotátor | nem fejlesztő; nem látta a TorchSignalt, a kulcsot, a visszajátszott és a videón szereplő naplókat |
+| Kezelő | nem a RobotVis fejlesztője; nem az annotátor |
+| Projektvezető | jóváhagyja a hatókört és a kapukat |
+| Minőségügyi szakértő | független a végrehajtótól; jóváhagyja a kapukat, ellenjegyzi a jegyzőkönyvet |
+
+## A szint lezárása
+
+A TRL 5 akkor jelölhető lezártnak, ha:
+
+1. a jóváhagyási lap aláírva, a kiértékelések előtti dátummal;
+2. a T5-01, a T5-08 és a kezelői próba a jóváhagyott feltétel szerint teljesül (a `robotvis_validacio/eszkozok/06_trl5_zaras.py` riportja szerint);
+3. a jegyzőkönyv kitöltve és aláírva (végrehajtó, kezelő, minőségügyi szakértő);
+4. a nyers naplók, a riportok és az ellenőrzőösszegek a tárolóban vannak (az aláírt példányok a beadási csomagban, nem a nyilvános tárolóban).
+
+## Változatok
+
+- v1 (2026-10-16): mind a nyolc kapu (T5-01 … T5-08) a TRL 5-ben.
+- v3 (2026-10-31): a hatókör a folyamatadat-rétegre szűkítve; T5-02 … T5-07 a TRL 6-ba; a T5-01 feltétele választható; kezelői próba külön kapuként; T5-08 mérve.
