@@ -46,9 +46,16 @@ def num(x):
 
 
 # ---------------------------------------------------------------- T5-01
-def t501(kulcs, kitoltott, tol, feltetel, kapu_pont, kapu_also):
+def t501(kulcs, kitoltott, tol, feltetel, kapu_pont, kapu_also, tajek=()):
     key = {r["azonosito"]: r for r in read_csv(kulcs)}
-    ann = read_csv(kitoltott)
+    ann_all = read_csv(kitoltott)
+    is_t = lambda a: any(a.startswith(p + "_") for p in tajek)
+    ann = [r for r in ann_all if not is_t(r["azonosito"])]
+    tajek_sorok = []
+    for r in ann_all:
+        if is_t(r["azonosito"]):
+            k = key.get(r["azonosito"], {})
+            tajek_sorok.append((r["azonosito"], r.get("kezdet_sor", ""), k.get("auto_kezdet_sor", ""), r.get("veg_sor", ""), k.get("auto_veg_sor", ""), (r.get("megjegyzes") or "").strip()))
     n_ev = n_ok = 0
     kivetelek, annotator = [], set()
     for r in ann:
@@ -73,7 +80,8 @@ def t501(kulcs, kitoltott, tol, feltetel, kapu_pont, kapu_also):
     lo, hi = wilson(n_ok, n_ev)
     ok = bool(n_ev) and (arany >= kapu_pont if feltetel == "pont" else lo >= kapu_also)
     felt = f"pontbecslés ≥ {kapu_pont:.0%}" if feltetel == "pont" else f"Wilson 95% alsó határ ≥ {kapu_also:.0%}"
-    return dict(varrat=len(ann), esemeny=n_ev, egyezo=n_ok, arany=arany, wilson_also=lo, wilson_felso=hi,
+    nem_annotalt = sum(1 for x in kivetelek if x[2] == "nincs annotáció")
+    return dict(varrat=len(ann), esemeny=n_ev, nem_annotalt=nem_annotalt, tajekoztato=tajek_sorok, tajekoztato_naplok=list(tajek), egyezo=n_ok, arany=arany, wilson_also=lo, wilson_felso=hi,
                 tures_sor=tol, feltetel=felt, teljesul=ok, kivetelek=kivetelek, annotator=sorted(annotator),
                 fajlok={os.path.basename(kulcs): sha256(kulcs), os.path.basename(kitoltott): sha256(kitoltott)})
 
@@ -138,6 +146,7 @@ def main():
     ap.add_argument("--t501-kapu-pont", type=float, default=0.99)
     ap.add_argument("--t501-kapu-also", type=float, default=0.95)
     ap.add_argument("--tol-sor", type=int, default=1)
+    ap.add_argument("--t501-tajekoztato", default="g02_s33", help="vesszővel elválasztott naplók, amelyek külön, a kapun kívül szerepelnek (alapértelmezés: g02_s33, ismert naplókiesés)")
     ap.add_argument("--t508-futasok", nargs="+", required=True, help="T5-08_visszajatszas_futasok.csv fájl(ok)")
     ap.add_argument("--t508-video", default=None, help="T5-08_video_osszesites.md")
     ap.add_argument("--t508-cel-ms", type=float, default=2000)
@@ -149,7 +158,8 @@ def main():
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
 
-    r1 = t501(a.t501_kulcs, a.t501_kitoltott, a.tol_sor, a.t501_feltetel, a.t501_kapu_pont, a.t501_kapu_also)
+    tajek = tuple(x.strip() for x in a.t501_tajekoztato.split(",") if x.strip())
+    r1 = t501(a.t501_kulcs, a.t501_kitoltott, a.tol_sor, a.t501_feltetel, a.t501_kapu_pont, a.t501_kapu_also, tajek)
     r8 = t508(a.t508_futasok, a.t508_video, a.t508_cel_ms, a.t508_min_futas)
     rk = kezeloi(a.kezeloi_lista, a.kezeloi_min_ertheto)
     mind = r1["teljesul"] and r8["teljesul"] and rk["teljesul"]
@@ -169,12 +179,19 @@ def main():
 
     L += ["## T5-01 – eseményfelismerés", "",
           f"- Annotált varrat: {r1['varrat']}; kiértékelt esemény: {r1['esemeny']}; egyező: {r1['egyezo']}",
+          f"- Nem annotált (üresen hagyott) esemény: {r1['nem_annotalt']}",
           f"- Annotátor: {', '.join(r1['annotator']) or '(nincs megadva)'}", f"- Kivételek: {len(r1['kivetelek'])}", ""]
     if r1["kivetelek"]:
         L += ["| Azonosító | Esemény | Ok | Az annotátor megjegyzése |", "| --- | --- | --- | --- |"]
         L += [f"| {x[0]} | {x[1]} | {x[2]} | {x[3]} |" for x in r1["kivetelek"]]
         L += [""]
 
+    if r1["tajekoztato"]:
+        L += [f"### Tájékoztató, a kapun kívül: {', '.join(r1['tajekoztato_naplok'])}", "",
+              "Ismert naplókiesés (2,5 s, az 1. és 2. varrat közötti szünetben): az automata az 1. és 2. varratot egy szakasznak látja, ezért a sorszám szerinti párosítás itt nem értelmezhető. Az annotáció és a kulcs összevetése:", "",
+              "| Azonosító | Annotált kezdet | Automata kezdet | Annotált vég | Automata vég | Megjegyzés |", "| --- | --- | --- | --- | --- | --- |"]
+        L += [f"| {x[0]} | {x[1]} | {x[2]} | {x[3]} | {x[4]} | {x[5]} |" for x in r1["tajekoztato"]]
+        L += [""]
     L += ["## T5-08 – streaming késleltetés", "", "| Forrás | Futás | Pozíció P95 | Áramforrás-érték P95 | Megállás | Áramforrás-érték kimaradt |",
           "| --- | --- | --- | --- | --- | --- |"]
     L += [f"| {f['forras']} | {f['futas']} | {fmt_ms(f['pozicio_P95_ms'])} | {fmt_ms(f['aramforras_P95_ms'])} | {f['megallas_db']} | {f['aramforras_kimaradt']}/{f['aramforras_kuldve']} |" for f in r8["futasok"]]
