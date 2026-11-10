@@ -1,6 +1,6 @@
-# TRL 5 szintzárási kritériumok – v3 (2026-10-31, jóváhagyandó)
+# TRL 5 szintzárási kritériumok – v3 (2026-10-31; jóváhagyva 2026-11-10)
 
-**Ez a változat felváltja a 2026-10-16-i v1-et.** A kapuk javaslatok: a projektvezető és a minőségügyi szakértő a jóváhagyási lapon (a TRL 5 dokumentáció melléklete) rögzíti őket, **a T5-01 kiértékelése és a kezelői próba előtt**. Az értékek nem az ISO 5817 követelményei.
+**Ez a változat felváltja a 2026-10-16-i v1-et.** A kapukat a projektvezető és a minőségügyi szakértő a jóváhagyási lapon (a TRL 5 dokumentáció melléklete) **2026-11-10-én jóváhagyta**, a T5-01 kiértékelése és a kezelői próba előtt (elektronikus aláírás időbélyeggel, illetve írásos megerősítés). A T5-02 a TRL 6-ba került; az adatteljesség korlátként elfogadva. Az értékek nem az ISO 5817 követelményei.
 
 ## Hatókör
 
@@ -20,7 +20,7 @@ A képi és a 3D réteg a TRL 4 szinten marad, amíg a TRL 6 kapui nem teljesül
 
 | Kapu | Mérőszám | Feltétel (javaslat) | Állapot (2026-10-31) | Bizonyíték |
 | --- | --- | --- | --- | --- |
-| **T5-01** eseményfelismerés | A vakon, kézzel annotált kezdő- és záróesemények aránya, amelyeket az automatikus szakaszolás legfeljebb 1 sor eltéréssel talál meg | Annotálva 21 napló, 63 varrat; **a kapu a 20 véletlen naplón** (60 varrat, 120 esemény) számolódik, a g02_s33 (ismert, 2,5 s-os naplókiesés: az automata az 1–2. varratot egy szakasznak látja) tájékoztató jelleggel, külön; a jóváhagyási lapon választandó: (a) pontbecslés ≥ 99% **vagy** (b) Wilson 95% CI alsó határa ≥ 95%; minden kivétel listázva | **Nyitott:** az annotációs csomag kész, az annotáció hiányzik. A szerkezeti ellenőrzés kész (151 napló, B) | `robotvis_validacio/eszkozok/01–02_*`, később `robotvis_validacio/annotacio_T5-01/` |
+| **T5-01** eseményfelismerés | A vakon, kézzel annotált kezdő- és záróesemények aránya, amelyeket az automatikus szakaszolás legfeljebb 1 sor eltéréssel talál meg | Annotálva 21 napló, 63 varrat; **a kapu a 20 véletlen naplón** (60 varrat, 120 esemény) számolódik, a g02_s33 (ismert, 2,5 s-os naplókiesés: az automata az 1–2. varratot egy szakasznak látja) tájékoztató jelleggel, külön; **jóváhagyott feltétel: (a) pontbecslés ≥ 99%** (120 eseményből legfeljebb 1 eltérés); minden kivétel listázva | **Nyitott:** az annotációs csomag kész, az annotáció hiányzik. A szerkezeti ellenőrzés kész (151 napló, B) | `robotvis_validacio/eszkozok/01–02_*`, később `robotvis_validacio/annotacio_T5-01/` |
 | **T5-08** streaming késleltetés | A forrástól a naplóig, illetve a CSV-időbélyegtől a kijelzésig tartó késés; adatvesztés; megállás | P95 ≤ 2 s minden futásban; ≥ 3 ismételt futás; az adatvesztés és a megállások megadva | **Teljesül (B):** visszajátszás 3 futás: pozíció P95 ≤ 85 ms, áramforrás-érték P95 ≤ 465 ms, megállás 0; 15 cellás videó (5 sebességcsoport, 57 esemény): felső becslés ≤ kb. 0,88 s | `robotvis_validacio/visszajatszas_2026-10-30/`, `robotvis_validacio/video_*_darab/`, `T5-08_video_osszesites.md` |
 | **Kezelői próba** | Egy nem fejlesztő kezelő a forgatókönyv szerint, segítség nélkül végigviszi a visszajátszásos futást | Az ellenőrzőlista 1–4. pontja „igen”, a 7. pont (érthetőség, 1–5) legalább 3; a futások naplója megvan | **Nyitott:** a forgatókönyv kész, a próba hiányzik | később `robotvis_validacio/kezeloi_proba_<dátum>/` |
 
@@ -42,7 +42,7 @@ A képi és a 3D réteg a TRL 4 szinten marad, amíg a TRL 6 kapui nem teljesül
 
 A TRL 5 akkor jelölhető lezártnak, ha:
 
-1. a jóváhagyási lap aláírva, a kiértékelések előtti dátummal;
+1. ~~a jóváhagyási lap aláírva, a kiértékelések előtti dátummal~~ – **teljesült, 2026-11-10**;
 2. a T5-01, a T5-08 és a kezelői próba a jóváhagyott feltétel szerint teljesül (a `robotvis_validacio/eszkozok/06_trl5_zaras.py` riportja szerint);
 3. a jegyzőkönyv kitöltve és aláírva (végrehajtó, kezelő, minőségügyi szakértő);
 4. a nyers naplók, a riportok és az ellenőrzőösszegek a tárolóban vannak (az aláírt példányok a beadási csomagban, nem a nyilvános tárolóban).
