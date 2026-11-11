@@ -5,7 +5,7 @@ A hatókör és a kapuk: [`SZINTZARASI_KRITERIUMOK.md`](SZINTZARASI_KRITERIUMOK.
 | # | Lépés | Ki | Bemenet | Kimenet |
 | --- | --- | --- | --- | --- |
 | 1 | ✅ **Kész (2026-11-10).** A jóváhagyási lap kitöltése és aláírása (hatókör, T5-02 áthelyezése, a T5-01 feltétele, az adatteljesség mint korlát, szereplők) | projektvezető, minőségügyi szakértő | a TRL 5 dokumentáció melléklete | aláírt lap, a 2–3. lépés előtti dátummal |
-| 2 | T5-01 vak annotáció: 21 napló, 63 varrat kezdő- és zárósora | annotátor (nem fejlesztő) | `T5-01_ANNOTATORNAK` csomag (a kulcs nélkül) | kitöltött annotációs lap |
+| 2 | ✅ **Kész (2026-11-11), teljesül: 2. kör 120/120.** T5-01 vak annotáció: 21 napló, 63 varrat kezdő- és zárósora | annotátor (nem fejlesztő) | `T5-01_ANNOTATORNAK` csomag (a kulcs nélkül) | kitöltött annotációs lap |
 | 3 | Kezelői próba visszajátszásos módban (kb. 30 perc, robot nélkül) | kezelő (nem fejlesztő, nem az annotátor), végrehajtó figyel | a kezelői próba forgatókönyve | 3 futás naplója, kitöltött ellenőrzőlista |
 | 4 | Záró kiértékelés: `python robotvis_validacio/eszkozok/06_trl5_zaras.py …` | végrehajtó | a 2–3. lépés kimenete | `TRL5_ZARO_RIPORT.md`, kapunkénti döntés |
 | 5 | A jegyzőkönyv kitöltése és aláírása | végrehajtó, kezelő, minőségügyi szakértő | a 4. lépés riportja | aláírt jegyzőkönyv |
