@@ -52,6 +52,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", required=True); ap.add_argument("--out", required=True)
     ap.add_argument("--per-group", type=int, default=4); ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--szakaszolo", choices=["v1", "v2"], default="v1", help="a kulcsot adó automata: v1 = TorchSignal-váltás, v2 = szakaszolo_v2.py (a vég a robot elindulása előtti sor)")
+    ap.add_argument("--g02s33", choices=["igen", "nem"], default="igen", help="a g02_s33 kivétel bevétele a mintába")
     ap.add_argument("--exclude", default="", help="vesszővel elválasztott azonosítók (pl. g01_s10,g01_s30), amelyeket az annotátor már látott")
     a = ap.parse_args()
     rng = random.Random(a.seed)
@@ -62,14 +64,20 @@ def main():
         files = [f for f in sorted(glob.glob(os.path.join(gdir, "*.csv"))) if os.path.basename(f)[:-4] not in excl]
         chosen = set(rng.sample(files, min(a.per_group, len(files))))
         # a g02_s33 (két aktív szakasz) kivételt mindig bevesszük, ha van
-        chosen |= {f for f in files if os.path.basename(f) == "g02_s33.csv"}
+        if a.g02s33 == "igen":
+            chosen |= {f for f in files if os.path.basename(f) == "g02_s33.csv"}
         picked += sorted(chosen)
     for f in picked:
         sid = os.path.basename(f)[:-4]
         df = pd.read_csv(f, encoding="utf-8-sig")
         if list(df.columns) != COLS:
             sys.exit(f"Váratlan oszlopok: {f}")
-        segs = active_segments(df["TorchSignal"].to_numpy())
+        if a.szakaszolo == "v2":
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            import szakaszolo_v2
+            segs = szakaszolo_v2.segments_v2(df)
+        else:
+            segs = active_segments(df["TorchSignal"].to_numpy())
         df.drop(columns=["TorchSignal"]).to_csv(os.path.join(a.out, "csv_vak", sid + ".csv"), index=True, index_label="sor", encoding="utf-8-sig")
         rel = os.path.relpath(f, a.dataset).replace(os.sep, "/")
         plot_file(df, os.path.join(a.out, "abrak", sid + ".png"), f"{sid} – {len(df)} sor; három varratot jelöljön meg időrendben")
