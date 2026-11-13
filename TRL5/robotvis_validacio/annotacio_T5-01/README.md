@@ -18,6 +18,10 @@
 - A v2-t **lefagyasztottuk, mielőtt kiértékeltük volna** (commit `08c5c4a`, 2026-11-11 17:09). A 2. kör kulcsának SHA-256-ját a 2. annotáció előtt feltöltöttük (`kor2_KULCS_SHA256_lefagyasztva.txt`, commit `3a387a8`, 17:10). A kiértékeléskor a kulcs egyezett vele.
 - A 2. körben az annotátor ugyanazt az útmutatót és sablont kapta; az 1. kör eredményéről nem tájékoztattuk.
 
+## A v2 a teljes adatsoron (2026-11-13)
+
+A v2-t mind a 150 naplóra lefuttattuk (`datasets/derived/seam_segments_v2.csv`, 449 szakasz). 444 szakasznál a v2-vég legfeljebb 8 sorral korábbi a TorchSignal-végnél (medián 1 sor). **5 szakasznál a v2 túl korán zár** (g02_s33 1., g03_s61 3., g03_s66 2., g05_s124 1., g05_s136 2.). Az ok vagy egy naplókiesés, vagy az, hogy nagy sebességnél egy-egy sorközben a lépésköz ≥ 0,5 mm. Ezek a szakaszok nem voltak a 2. kör mintájában, ezért a T5-01 eredményét nem érintik. A táblában `qc_flag` jelöli őket, a szabályt (például időalapú küszöbbel) a TRL 6-ban kell javítani.
+
 ## Ismert adatok
 
 - **g02_s33** (1. kör, tájékoztató): 2,5 s-os naplókiesés az 1. és 2. varrat között; az annotátor is 2 szakaszt látott, és egyezett az automatával.
