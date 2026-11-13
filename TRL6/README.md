@@ -2,6 +2,11 @@
 
 **Állapot:** nem teljesült – terv (lásd `Hegesztesi_DT_TRL6_Leiras.docx`).
 
+**A TRL 5-ből (teljesült, 2026-11-13):**
+- a T5-02 jelanomália-detektor ide került (jóváhagyva 2026-11-10);
+- **a cellanap előtt kötelező az ívjel-javítás** (`../TRL5/robotvis_validacio/ivjel_javitas_v1/`). A T5-01 1. köre szerint a weboldalról jövő TorchSignal a varratvégeknél kb. 0,5 s-ot késik, a kezelői próba szerint pedig a böngészőablak láthatósága is rontja az adatteljességet;
+- a varratvégeket a `szakaszolo_v2.py` a robot megállásából veszi.
+
 Ide kerülnek a demonstráció bizonyítékai:
 
 - `validacios_sorozat/` – a 15 hibátlan + 15 zavart darabos valós sorozat: CSV, panorámák (és a 6 nyers felvétel), PLY, gyártási és zavarnapló, szakértői vak minősítés (aláírt).
