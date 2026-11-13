@@ -1,6 +1,6 @@
 # TRL 5 – Folyamatadat-réteg validációja releváns környezetben
 
-**Állapot (2026-11-11):** nem lezárt. A T5-01 és a T5-08 kapu teljesül; a kezelői próba és a jegyzőkönyv aláírása hiányzik. Részletek: `Hegesztesi_DT_TRL5_Leiras.docx`.
+**Állapot (2026-11-13):** mindhárom zárókapu teljesül, a jegyzőkönyv aláírva (végrehajtó, kezelő, minőségügyi szakértő). Hátra van: a TRL 5 leírás aláírása (projektvezető, rektor). Részletek: `Hegesztesi_DT_TRL5_Leiras.docx`.
 
 **Hatókör:** a RobotComm–RobotVis folyamatadat-réteg (robotpozíció, áramforrás-adatok gyűjtése, kijelzése, naplózása a valós robotcellában). A képi és 3D réteg kapui (T5-03 … T5-07) és a jelanomália-detektor (T5-02) a TRL 6-ba kerültek; lásd [`SZINTZARASI_KRITERIUMOK.md`](SZINTZARASI_KRITERIUMOK.md).
 
@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | T5-01 eseményfelismerés (vak annotáció, 2 kör) | **teljesül (B)** – 2. kör (szakaszoló v2): 120/120; 1. kör (v1): 73,1%, ok: a TorchSignal késése | `robotvis_validacio/annotacio_T5-01/` |
 | T5-08 streaming késleltetés | **teljesül (B)** – visszajátszás 3 futás (P95 ≤ 85 ms / ≤ 465 ms), 15 cellás videó (≤ kb. 0,88 s) | `robotvis_validacio/visszajatszas_2026-10-30/`, `robotvis_validacio/video_*_darab/`, `robotvis_validacio/T5-08_video_osszesites.md` |
-| Kezelői próba | nyitott – a forgatókönyv kész | később `robotvis_validacio/kezeloi_proba_<dátum>/` |
+| Kezelői próba | **teljesül, dokumentált korláttal** (2026-11-12; a minőségügyi szakértő elfogadta 2026-11-13) | `robotvis_validacio/kezeloi_proba_2026-11-12/` |
 | Adatteljesség (korlát) | dokumentált; javítás előkészítve | `robotvis_validacio/naplo_folytonossag/`, `robotvis_validacio/ivjel_javitas_v1/` |
 
 A lezárásig hátralévő lépések: [`NYITOTT_ADATIGENY.md`](NYITOTT_ADATIGENY.md). A záró kiértékelés egy paranccsal: `robotvis_validacio/eszkozok/06_trl5_zaras.py` (leírás: `robotvis_validacio/eszkozok/README.md`).

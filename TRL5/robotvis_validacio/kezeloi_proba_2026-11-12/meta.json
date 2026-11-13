@@ -1,0 +1,12 @@
+{
+ "indulas_ms": 1794509592890.7786,
+ "csv": [
+  "naplok\\g02_s45.csv",
+  "naplok\\g03_s65.csv",
+  "naplok\\g05_s125.csv"
+ ],
+ "speed": 1.0,
+ "port": 9999,
+ "ivjel": false,
+ "vege_ms": 1794509712097.3613
+}
