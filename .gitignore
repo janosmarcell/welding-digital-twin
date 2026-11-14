@@ -219,3 +219,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 *.mp4
+
+# Az adatsor-audit generált kimenete (tools/audit_dataset.py), bármikor újra előállítható
+audit-output/
