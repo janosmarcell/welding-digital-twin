@@ -47,6 +47,8 @@ A TRL 5 akkor jelölhető lezártnak, ha:
 3. a jegyzőkönyv kitöltve és aláírva (végrehajtó, kezelő, minőségügyi szakértő);
 4. a nyers naplók, a riportok és az ellenőrzőösszegek a tárolóban vannak (az aláírt példányok a beadási csomagban, nem a nyilvános tárolóban).
 
+**Mind a négy feltétel teljesült; a TRL 5 leírást a projektvezető és a rektor 2026-11-17-én aláírta. A szint lezárva.**
+
 ## Változatok
 
 - v1 (2026-10-16): mind a nyolc kapu (T5-01 … T5-08) a TRL 5-ben.

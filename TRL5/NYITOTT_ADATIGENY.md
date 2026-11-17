@@ -9,7 +9,7 @@ A hatókör és a kapuk: [`SZINTZARASI_KRITERIUMOK.md`](SZINTZARASI_KRITERIUMOK.
 | 3 | ✅ **Kész (2026-11-12), teljesül, dokumentált korláttal.** Kezelői próba visszajátszásos módban (kb. 30 perc, robot nélkül) | kezelő (nem fejlesztő, nem az annotátor), végrehajtó figyel | a kezelői próba forgatókönyve | 3 futás naplója, kitöltött ellenőrzőlista |
 | 4 | ✅ **Kész.** Záró kiértékelés: `python robotvis_validacio/eszkozok/06_trl5_zaras.py …` | végrehajtó | a 2–3. lépés kimenete | `TRL5_ZARO_RIPORT.md`, kapunkénti döntés |
 | 5 | ✅ **Kész (2026-11-13).** A jegyzőkönyv kitöltése és aláírása | végrehajtó, kezelő, minőségügyi szakértő | a 4. lépés riportja | aláírt jegyzőkönyv |
-| 6 | Feltöltés: annotáció, kulcs, riportok a tárolóba; a TRL 5 leírás és az Excel frissítése | végrehajtó | | |
+| 6 | ✅ **Kész (2026-11-17).** Feltöltés: annotáció, kulcs, riportok a tárolóba; a TRL 5 leírás és az Excel frissítése; a leírás aláírása (projektvezető, rektor) | végrehajtó, projektvezető, rektor | | aláírt TRL 5 leírás |
 
 ## Már nem TRL 5-feladat
 

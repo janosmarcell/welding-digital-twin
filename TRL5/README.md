@@ -1,6 +1,6 @@
 # TRL 5 – Folyamatadat-réteg validációja releváns környezetben
 
-**Állapot (2026-11-13):** mindhárom zárókapu teljesül, a jegyzőkönyv aláírva (végrehajtó, kezelő, minőségügyi szakértő). Hátra van: a TRL 5 leírás aláírása (projektvezető, rektor). Részletek: `Hegesztesi_DT_TRL5_Leiras.docx`.
+**Állapot (2026-11-17): lezárva.** Mindhárom zárókapu teljesül, a jegyzőkönyv aláírva (végrehajtó, kezelő, minőségügyi szakértő, 2026-11-13), a TRL 5 leírás aláírva (projektvezető, rektor, 2026-11-17). Az aláírt példányok a beadási csomagban vannak. Részletek: `Hegesztesi_DT_TRL5_Leiras.docx`.
 
 **Hatókör:** a RobotComm–RobotVis folyamatadat-réteg (robotpozíció, áramforrás-adatok gyűjtése, kijelzése, naplózása a valós robotcellában). A képi és 3D réteg kapui (T5-03 … T5-07) és a jelanomália-detektor (T5-02) a TRL 6-ba kerültek; lásd [`SZINTZARASI_KRITERIUMOK.md`](SZINTZARASI_KRITERIUMOK.md).
 
