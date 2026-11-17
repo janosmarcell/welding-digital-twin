@@ -11,3 +11,9 @@ Development and validation of a Digital Twin framework for robotic welding quali
 | TRL 7 | terv: pilot üzem | `TRL7/` |
 
 Bizonyítékosztályok: A – publikált; B – a nyers adatból újraszámolt; C – másodlagos; D – szintetikus, csak a módszer bemutatására (lásd `EVIDENCE_POLICY.md`). Az aláírt lapok a beadási csomagban vannak, nem ebben a tárolóban.
+
+## Licenc és támogatás
+
+Kód: MIT (`LICENSE`). Adatok és dokumentáció: CC BY 4.0 (`LICENSE-DATA.md`).
+
+A projekt a 2022-1.1.1-KK-2022-00003 azonosítójú, a Nemzeti Kutatási, Fejlesztési és Innovációs Alapból támogatott DOKK-projekt keretében valósult meg.
