@@ -1,0 +1,25 @@
+{
+  "upload_type": "dataset",
+  "title": "Robotic GMAW welding digital twin: process data, seam images, 3D scans and TRL 1-7 validation",
+  "description": "<p>Multimodal dataset and validation tooling from a robotic GMAW (MAG) welding digital twin developed at ELTE Faculty of Informatics, Savaria Institute of Technology (Szombathely, Hungary).</p><p>Contents: 150 cell process logs (robot pose, torch signal, voltage, current, wire-feed speed; 5 travel speeds x 30-step synergic ramp, July 2023), 462 seam panoramas with metadata, 18 3D surface scans, CAD reference point clouds, derived seam segments, and the TRL 1-7 documentation with the TRL 5 validation of the process-data layer (blind annotation of seam boundaries, record-and-replay latency measurement, operator trial).</p><p>Class D (synthetic) files are labelled and are not real measurements; see EVIDENCE_POLICY.md.</p>",
+  "creators": [
+    {
+      "name": "Hegedűs-Kuti, János",
+      "affiliation": "Eötvös Loránd University (ELTE), Faculty of Informatics, Savaria Institute of Technology"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "digital twin",
+    "robotic welding",
+    "GMAW",
+    "process monitoring",
+    "weld seam images",
+    "3D scanning",
+    "technology readiness level",
+    "dataset"
+  ],
+  "notes": "Funded by the National Research, Development and Innovation Fund of Hungary, project 2022-1.1.1-KK-2022-00003 (DOKK). Code is licensed under MIT (LICENSE); data and documentation under CC BY 4.0 (LICENSE-DATA.md).",
+  "language": "eng"
+}
