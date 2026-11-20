@@ -1,0 +1,9 @@
+
+.import/
+
+__pycache__/
+
+addons/
+
+PointCloudDiffVis
+PointCloudDiffVis.exe

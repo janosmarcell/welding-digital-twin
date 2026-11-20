@@ -20,7 +20,7 @@ A demonstráció három része:
 | --- | --- |
 | **A. Cellanap (élő)** | a TRL 5 javításaival (ívjel a robot I/O-jából, szakaszoló v2 időalapú küszöbbel) egy nem fejlesztő kezelő élőben futtatja a rendszert; kb. 6 hibátlan + 4 szándékosan zavart darab |
 | **B. Cella nélkül** | a 2023-as, a varratok közepén elvágott darabokon a vágási felület (valós keresztmetszet) a referencia a 2D- és 3D-mérésnek; a független szakértő vakon minősít; 15 darabos rács (5 sebesség × 3 áram) |
-| **C. Integrált bemutató** | napló → 2D → 3D → riport egy darabazonosítóval; hiányos adatnál „ELLENŐRIZENDŐ”, automatikus OK nélkül |
+| **C. Integrált bemutató** | napló → 2D → 3D → riport egy darabazonosítóval; hiányos adatnál „ELLENŐRIZENDŐ”, automatikus OK nélkül; a 3D-s lépés a 2024-es PointCloudDiffVis alkalmazásra épül (`src/pointclouddiffvis_2024/`) |
 
 Javasolt kapuk (jóváhagyandó, a mérések előtt):
 
@@ -35,6 +35,8 @@ Javasolt kapuk (jóváhagyandó, a mérések előtt):
 Kikerült (TRL 7-re vagy későbbre): a 15 + 15 darabos sorozat, a küszöb-érzékenységi görbe független teszten, az ismételt szkennelés szórása, az új geometria, az IEC 62264-1 interfész.
 
 ## Mappák (a demonstráció bizonyítékai)
+
+- `src/pointclouddiffvis_2024/` – a 3D-s hibakereső lánc (FGR → ICP → távolság → 90. percentilis → DBSCAN) asztali alkalmazásként, 2024 (forráskód, provenance, SHA-256). A mm-átváltás fix ×25-ös szorzó; a G6-04 előtt dokumentált skálára kell cserélni.
 
 - `cellanap/` – az A rész: naplók (ívjel robot és web), zavarnapló, annotáció, kezelői lap.
 - `szetvagott_darabok/` – a B rész: darabonként a vágási felület és a felülnézet fotója méretreferenciával, a szkenek, a szakértő vak minősítése (kóddal).

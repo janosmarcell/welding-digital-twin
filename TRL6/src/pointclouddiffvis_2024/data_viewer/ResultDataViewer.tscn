@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource path="res://data_viewer/ResultDataViewer.gd" type="Script" id=1]
+[ext_resource path="res://data_viewer/new_spatialmaterial.tres" type="Material" id=2]
+[ext_resource path="res://data_viewer/FreeLookCamera.gd" type="Script" id=3]
+[ext_resource path="res://data_viewer/Grid.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PrismMesh" id=2]
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.117647, 1, 0, 1 )
+
+[sub_resource type="PrismMesh" id=4]
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="PrismMesh" id=6]
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0, 0.0392157, 1, 1 )
+
+[node name="ResultDataViewer" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="SingleMeshView" type="MeshInstance" parent="."]
+material_override = ExtResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="MultiMeshViewRoot" type="Spatial" parent="."]
+
+[node name="ImageDisplay" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 4
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.762262, 0.269661, -0.588421, 0, 0.909083, 0.416614, 0.647269, -0.317569, 0.69296, -20.0673, 14.6257, 21.4172 )
+current = true
+far = 1000.0
+script = ExtResource( 3 )
+
+[node name="Grid" type="ImmediateGeometry" parent="."]
+material_override = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Y" type="MeshInstance" parent="Grid"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="X" type="MeshInstance" parent="Grid"]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Z" type="MeshInstance" parent="Grid"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
