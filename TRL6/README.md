@@ -36,6 +36,7 @@ Kikerült (TRL 7-re vagy későbbre): a 15 + 15 darabos sorozat, a küszöb-érz
 
 ## Mappák (a demonstráció bizonyítékai)
 
+- `src/eldetektalas_2024/` – feltáró 2D éldetektálási notebookok (Canny, Roberts, kontúr, távolság-transzformáció; 2024-10), a szélesség csak pixelben; a G6-04 2D-oldalának kiindulópontja, nem bizonyíték.
 - `src/pointclouddiffvis_2024/` – a 3D-s hibakereső lánc (FGR → ICP → távolság → 90. percentilis → DBSCAN) asztali alkalmazásként, 2024 (forráskód, provenance, SHA-256). A mm-átváltás fix ×25-ös szorzó; a G6-04 előtt dokumentált skálára kell cserélni.
 
 - `cellanap/` – az A rész: naplók (ívjel robot és web), zavarnapló, annotáció, kezelői lap.
