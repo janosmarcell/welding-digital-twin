@@ -1,0 +1,23 @@
+csoport,csoport_neve,varratkep,darab,varrat,v_cm_per_min,I_A,U_V,megjegyzes
+1,kép lelóg (a varrat nem fér ki a képre),27_1,27,1,30,192,23.1,
+1,kép lelóg (a varrat nem fér ki a képre),29_1,29,1,30,197,23.6,
+1,kép lelóg (a varrat nem fér ki a képre),30_1,30,1,30,200,23.8,
+1,kép lelóg (a varrat nem fér ki a képre),103_1,103,1,60,114,20.6,
+2,nem egységes textúra,65_1,65,1,50,65,18.3,
+2,nem egységes textúra,94_1,94,1,60,59,18.2,
+2,nem egységes textúra,23_1,23,1,30,176,22.2,
+2,nem egységes textúra,90_2,90,2,50,200,23.8,
+2,nem egységes textúra,120_2,120,2,60,200,23.8,
+3,dudorok + kontraszthiba,13_2,13,2,30,114,20.6,
+3,dudorok + kontraszthiba,15_2,15,2,30,127,20.9,
+3,dudorok + kontraszthiba,52_1,52,1,40,171,21.9,
+3,dudorok + kontraszthiba,56_1,56,1,40,190,22.9,
+3,dudorok + kontraszthiba,76_2,76,2,50,133,21.0,
+4,nem folytonos varrat,62_3,62,3,50,46,18.1,
+4,nem folytonos varrat,61_1,61,1,50,40,18.0,
+4,nem folytonos varrat,202_2,202,2,,,,"előkísérlet (2023-07-07), nem a 150 darabos sorozat része"
+4,nem folytonos varrat,202_1,202,1,,,,"előkísérlet (2023-07-07), nem a 150 darabos sorozat része"
+5,egyéb,4_2,4,2,30,59,18.2,
+5,egyéb,500_2,500,2,,,,"tesztkép, helyőrző metaadattal"
+5,egyéb,122_1,122,1,70,46,18.1,
+5,egyéb,123_1,123,1,70,52,18.2,
