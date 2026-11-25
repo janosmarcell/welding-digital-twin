@@ -21,5 +21,12 @@
     "dataset"
   ],
   "notes": "Funded by the National Research, Development and Innovation Fund of Hungary, project 2022-1.1.1-KK-2022-00003 (DOKK). Code is licensed under MIT (LICENSE); data and documentation under CC BY 4.0 (LICENSE-DATA.md).",
-  "language": "eng"
+  "language": "eng",
+  "contributors": [
+    {
+      "name": "Szőlősi, József",
+      "type": "Researcher",
+      "affiliation": "Eötvös Loránd University (ELTE), Faculty of Informatics, Savaria Institute of Technology"
+    }
+  ]
 }
