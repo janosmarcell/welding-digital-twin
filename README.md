@@ -1,6 +1,6 @@
 # welding-digital-twin
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24539921.svg)](https://doi.org/10.5281/zenodo.24539921)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24541940.svg)](https://doi.org/10.5281/zenodo.24541940)
 
 Development and validation of a Digital Twin framework for robotic welding quality monitoring, integrating process data, 2D/3D measurements, synthetic data generation, anomaly detection, and TRL1–TRL7 research activities.
 
