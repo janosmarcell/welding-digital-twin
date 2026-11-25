@@ -3,7 +3,7 @@
 Multimodal data from 150 bead-on-plate welds made with a robotic GMAW cell at ELTE Faculty of Informatics, Savaria Institute of Technology (Szombathely, Hungary), July 2023: process logs recorded during welding, top-view seam images and 3D surface scans, plus the experimental plan and derived seam boundaries.
 
 - **Licence:** CC BY 4.0 (`../LICENSE-DATA.md`). Code in this repository: MIT (`../LICENSE`).
-- **Cite as:** Hegedűs-Kuti, J. (2026). *Robotic GMAW welding digital twin: process data, seam images, 3D scans and TRL 1-7 validation* (v1.0). Zenodo. DOI: [to be added]
+- **Cite as:** Hegedűs-Kuti, J. (2026). *Robotic GMAW welding digital twin: process data, seam images, 3D scans and TRL 1-7 validation* (v1.0). Zenodo. https://doi.org/10.5281/zenodo.24539921
 - **Evidence classes** used in this repository: A published, B recomputed from raw data, C secondary, D synthetic. Everything in `datasets/` is real (A/B) except `cad_pointclouds_v1/`, which is CAD geometry, not measured data. Synthetic files elsewhere in the repository are labelled and are not measurements (`../EVIDENCE_POLICY.md`).
 
 ## Experimental design

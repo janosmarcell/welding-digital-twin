@@ -7,6 +7,9 @@ authors:
     given-names: "János"
     affiliation: "Eötvös Loránd University (ELTE), Faculty of Informatics, Savaria Institute of Technology"
 license: CC-BY-4.0
+version: "1.0"
+doi: "10.5281/zenodo.24539921"
+date-released: "2026-11-25"
 repository-code: "https://github.com/janosmarcell/welding-digital-twin"
 keywords:
   - digital twin
