@@ -13,7 +13,8 @@ Multimodal data from 150 bead-on-plate welds made with a robotic GMAW cell at EL
 | Pieces | 150 plates, three parallel seams each (450 seams) |
 | Travel speed | 5 groups: 30, 40, 50, 60, 70 cm/min (`g01` … `g05`) |
 | Current / voltage / wire feed | a 30-step synergic ramp within each group, from about 40 A / 18.0 V / 1.2 m/min to 200 A / 23.8 V / 7.0 m/min; the set values per piece are in `kiserleti_terv_2023/` |
-| Shielding gas | 16 l/min (column `gas`) |
+| Base material | S235 steel plate, 60 × 60 × 6 mm; bead-on-plate, three seams per plate |
+| Filler / gas | G3Si1 (ER70S-6) wire, Ø 1.2 mm; M21 (Ar + CO2), 16 l/min (column `gas`) |
 | Piece numbering | `gNN_sMM`: group `NN`, piece `MM` = 1 … 150 across all groups (e.g. `g03_s75` = piece 75, 50 cm/min) |
 
 ## Folders
