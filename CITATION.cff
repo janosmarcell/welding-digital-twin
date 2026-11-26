@@ -5,6 +5,7 @@ title: "Robotic GMAW welding digital twin: process data, seam images, 3D scans a
 authors:
   - family-names: "Hegedűs-Kuti"
     given-names: "János"
+    orcid: "https://orcid.org/0000-0002-1400-7540"
     affiliation: "Eötvös Loránd University (ELTE), Faculty of Informatics, Savaria Institute of Technology"
 license: CC-BY-4.0
 version: "1.1"
