@@ -42,7 +42,7 @@ One file per piece, recorded by the RobotVis application during welding. One row
 
 **Timing.** The robot pose arrives over a local socket; the power-source values (`TorchSignal`, `Voltage`, `Current`, `WireFeedSpeed`) are read from the power source's web page and lag the pose by up to about 0.5 s (95th percentile 0.29–0.47 s in replay tests, `../TRL5/robotvis_validacio/`). For seam boundaries, use `derived/seam_segments_v2.csv`, whose ends are taken from the robot motion.
 
-**Known issues.** 7 of the 150 logs contain a logging gap longer than 1 s (longest 2.5 s, `g02_s33`, where seams 1 and 2 merge into one arc-on segment). The set values of `g01_s15` differ from the plan (logged 130.5 A, 18.72 V, 3.8 m/min; planned 127 A, 20.9 V, 4.0 m/min).
+**Known issues.** 7 of the 150 logs contain a logging gap longer than 1 s (longest 2.5 s, `g02_s33`, where seams 1 and 2 merge into one arc-on segment). The set values of `g01_s15` differ from the plan (logged 130.5 A, 18.72 V, 3.8 m/min; planned 127 A, 20.9 V, 4.0 m/min) because the piece was welded with an incorrect power-source setting.
 
 ### Full-resolution panoramas and 3D scans: `welding_experiments_v1/`
 
@@ -58,7 +58,7 @@ One file per piece, recorded by the RobotVis application during welding. One row
 
 **Coverage and exceptions.**
 - Panoramas exist for 142 of the 150 pieces; none were taken of pieces 44, 121, 125, 130, 135, 140, 145 and 150.
-- Piece 76 has six images with identical settings (probably photographed twice).
+- Piece 76 has six images with identical settings; three of them belong to another piece that was mislabelled as 76 (which piece is not known).
 - IDs 201–207 are preliminary trials of 7 July 2023 (extreme settings at 20–90 cm/min) and 500–503 are test images with placeholder metadata; neither belongs to the 150-piece series.
 - For piece 22 the image metadata state 174 A / 21.7 V; the plan and the log (171 A / 21.9 V) are authoritative.
 - The image-to-log mapping was checked by correlating seam appearance with the logged settings (r = 0.993, n = 425 seams).
